@@ -40,6 +40,15 @@ class ConcernsSection extends SectionType
                 'add_label' => trans('nc::app.sections.concerns.add_concern'),
                 'fields' => [
                     [
+                        'key' => 'category_id',
+                        'type' => SectionSchema::SELECT,
+                        'label' => trans('nc::app.sections.concerns.select_category'),
+                        'options' => array_merge(
+                            [['value' => '', 'label' => trans('nc::app.sections.concerns.custom_or_none')]],
+                            $this->categoryOptions()
+                        ),
+                    ],
+                    [
                         'key' => 'name',
                         'type' => SectionSchema::TEXT,
                         'label' => trans('nc::app.sections.concerns.concern_name'),

@@ -1,5 +1,7 @@
 @props(['options' => []])
 
+@inject('categoryRepository', 'Webkul\Category\Repositories\CategoryRepository')
+
 @php
     $isAr = app()->getLocale() === 'ar';
     $kicker = data_get($options, 'kicker') ?: ($isAr ? 'تسوقي حسب احتياج البشرة' : 'SHOP BY SKIN CONCERN');
@@ -55,33 +57,54 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
             @foreach ($items as $index => $item)
                 @php
-                    $img = \NumbersNebula\NebulaCosmetics\Helpers\MediaHelper::url(
-                        $item['image'] ?? null,
-                        $defaultItems[$index % count($defaultItems)]['image']
-                    );
+                    $categoryId = data_get($item, 'category_id');
+                    $category = $categoryId ? $categoryRepository->find($categoryId) : null;
+
+                    $catName = $category?->name;
+                    $catDesc = $category?->description ? strip_tags($category->description) : null;
+                    $catImage = $category?->logo_url ?: $category?->banner_url;
+                    $catUrl = $category?->slug ? route('shop.product_or_category.index', $category->slug) : null;
+
+                    $default = $defaultItems[$index % count($defaultItems)];
+
+                    $title = data_get($item, 'name') ?: ($catName ?: $default['name']);
+                    $copy = data_get($item, 'copy') ?: ($catDesc ?: $default['copy']);
+                    $link = data_get($item, 'btn_link') ?: ($catUrl ?: $default['btn_link']);
+                    $btnText = data_get($item, 'btn_text') ?: ($isAr ? 'تسوقي الآن' : 'SHOP NOW');
+
+                    $customImage = data_get($item, 'image');
+                    if ($customImage) {
+                        $img = \NumbersNebula\NebulaCosmetics\Helpers\MediaHelper::url($customImage, $default['image']);
+                    } elseif ($catImage) {
+                        $img = $catImage;
+                    } else {
+                        $img = $default['image'];
+                    }
                 @endphp
                 <article class="reveal flex flex-col justify-between border border-[#2e2224] bg-white transition-transform hover:-translate-y-1">
                     <div class="aspect-[4/5] overflow-hidden border-b border-[#2e2224] bg-[#fbf8f1]">
                         <img
                             src="{{ $img }}"
-                            alt="{{ $item['name'] ?? '' }}"
+                            alt="{{ $title }}"
                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                         />
                     </div>
                     <div class="p-5 flex flex-col justify-between flex-1 gap-4">
                         <div>
                             <h3 class="font-serif font-bold text-lg text-[#2e2224] mb-2">
-                                {{ $item['name'] ?? '' }}
+                                <a href="{{ $link }}" class="hover:text-[#bd1765] transition-colors">
+                                    {{ $title }}
+                                </a>
                             </h3>
-                            <p class="text-xs text-[#2e2224]/75 leading-relaxed">
-                                {{ $item['copy'] ?? '' }}
+                            <p class="text-xs text-[#2e2224]/75 leading-relaxed line-clamp-3">
+                                {{ $copy }}
                             </p>
                         </div>
                         <a
-                            href="{{ $item['btn_link'] ?? '#shop' }}"
+                            href="{{ $link }}"
                             class="nc-btn nc-btn--light text-center py-2.5 text-[11px]"
                         >
-                            {{ $item['btn_text'] ?? ($isAr ? 'تسوقي الآن' : 'SHOP NOW') }}
+                            {{ $btnText }}
                         </a>
                     </div>
                 </article>
