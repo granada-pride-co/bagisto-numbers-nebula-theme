@@ -2,9 +2,10 @@
 
 @php
     $isAr = app()->getLocale() === 'ar';
-    $image = data_get($options, 'image') 
-        ? asset('storage/' . data_get($options, 'image')) 
-        : asset('themes/shop/nebula-cosmetics/images/cleo-concern-portrait.jpg');
+    $image = \NumbersNebula\NebulaCosmetics\Helpers\MediaHelper::url(
+        data_get($options, 'image'),
+        asset('themes/shop/nebula-cosmetics/images/cleo-concern-portrait.jpg')
+    );
 
     $eyebrow = data_get($options, 'eyebrow') ?: ($isAr ? 'فن دمج المستحضرات' : 'NEBULA MIXOLOGY');
     $title = data_get($options, 'title') ?: ($isAr ? 'روتين واحد متكامل. دون أي تعقيد.' : 'One routine. Zero confusion.');

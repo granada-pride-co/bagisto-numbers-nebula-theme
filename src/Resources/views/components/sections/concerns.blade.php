@@ -55,9 +55,10 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
             @foreach ($items as $index => $item)
                 @php
-                    $img = ! empty($item['image']) 
-                        ? (str_starts_with($item['image'], 'http') || str_starts_with($item['image'], '/') ? $item['image'] : asset('storage/' . $item['image']))
-                        : ($defaultItems[$index % count($defaultItems)]['image']);
+                    $img = \NumbersNebula\NebulaCosmetics\Helpers\MediaHelper::url(
+                        $item['image'] ?? null,
+                        $defaultItems[$index % count($defaultItems)]['image']
+                    );
                 @endphp
                 <article class="reveal flex flex-col justify-between border border-[#2e2224] bg-white transition-transform hover:-translate-y-1">
                     <div class="aspect-[4/5] overflow-hidden border-b border-[#2e2224] bg-[#fbf8f1]">

@@ -2,9 +2,10 @@
 
 @php
     $isAr = app()->getLocale() === 'ar';
-    $bgImage = data_get($options, 'bg_image') 
-        ? asset('storage/' . data_get($options, 'bg_image')) 
-        : asset('themes/shop/nebula-cosmetics/images/cleo-ritual-wide.jpg');
+    $bgImage = \NumbersNebula\NebulaCosmetics\Helpers\MediaHelper::url(
+        data_get($options, 'bg_image'),
+        asset('themes/shop/nebula-cosmetics/images/cleo-ritual-wide.jpg')
+    );
 
     $eyebrow = data_get($options, 'eyebrow') ?: ($isAr ? 'مصنوعة لبشرة حقيقية' : 'MADE FOR REAL SKIN');
     $title = data_get($options, 'title') ?: ($isAr ? 'تناقلي الطقوس جيلاً بعد جيل.' : 'Pass the ritual on.');

@@ -1,13 +1,15 @@
 @props(['options' => []])
 
 @php
-    $skinImage = data_get($options, 'skin_image') 
-        ? asset('storage/' . data_get($options, 'skin_image')) 
-        : asset('themes/shop/nebula-cosmetics/images/cleo-hero-skin.jpg');
+    $skinImage = \NumbersNebula\NebulaCosmetics\Helpers\MediaHelper::url(
+        data_get($options, 'skin_image'),
+        asset('themes/shop/nebula-cosmetics/images/cleo-hero-skin.jpg')
+    );
 
-    $productImage = data_get($options, 'product_image') 
-        ? asset('storage/' . data_get($options, 'product_image')) 
-        : asset('themes/shop/nebula-cosmetics/images/cleo-hero-product.jpg');
+    $productImage = \NumbersNebula\NebulaCosmetics\Helpers\MediaHelper::url(
+        data_get($options, 'product_image'),
+        asset('themes/shop/nebula-cosmetics/images/cleo-hero-product.jpg')
+    );
 
     $eyebrow = data_get($options, 'eyebrow') ?: (trans('nc::app.brand.name') . ' / BODY + SKIN');
     $headline = data_get($options, 'headline') ?: (app()->getLocale() === 'ar' ? 'العناية بالبشرة، برؤية عصرية.' : 'Skin, made modern.');

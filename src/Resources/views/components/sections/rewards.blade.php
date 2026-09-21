@@ -2,9 +2,10 @@
 
 @php
     $isAr = app()->getLocale() === 'ar';
-    $image = data_get($options, 'image') 
-        ? asset('storage/' . data_get($options, 'image')) 
-        : asset('themes/shop/nebula-cosmetics/images/cleo-concern-application.jpg');
+    $image = \NumbersNebula\NebulaCosmetics\Helpers\MediaHelper::url(
+        data_get($options, 'image'),
+        asset('themes/shop/nebula-cosmetics/images/cleo-concern-application.jpg')
+    );
 
     $eyebrow = data_get($options, 'eyebrow') ?: ($isAr ? 'مزايا فريدة في كل خطوة' : 'PERKS BEHIND EVERY PETAL');
     $title = data_get($options, 'title') ?: ($isAr ? 'انضمي إلى مكافآت سديم.' : 'Join Nebula Rewards.');
