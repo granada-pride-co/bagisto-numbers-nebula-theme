@@ -81,15 +81,7 @@
     }
 @endphp
 
-<a href="{{ $announcementLink }}" class="nc-announcement flex items-center justify-center gap-2 px-4 text-center">
-    <span>{{ $announcementText }}</span>
-    <span class="inline-flex items-center gap-1 underline underline-offset-2">
-        {{ $announcementBtn }}
-        <svg class="w-3.5 h-3.5 rtl:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M5 12h14M12 5l7 7-7 7"/>
-        </svg>
-    </span>
-</a>
+<x-nc::sections.announcement :options="$announcementSection?->options ?? []" />
 
 <header class="nc-site-header">
     <div class="flex items-center">

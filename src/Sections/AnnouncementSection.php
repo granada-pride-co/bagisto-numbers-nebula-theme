@@ -39,6 +39,40 @@ class AnnouncementSection extends SectionType
     {
         return [
             [
+                'key' => 'speed',
+                'type' => SectionSchema::SELECT,
+                'label' => trans('nc::app.sections.announcement.speed'),
+                'options' => [
+                    ['value' => '3000', 'label' => '3s'],
+                    ['value' => '4000', 'label' => '4s'],
+                    ['value' => '5000', 'label' => '5s'],
+                    ['value' => '7000', 'label' => '7s'],
+                ],
+            ],
+            [
+                'key' => 'messages',
+                'type' => SectionSchema::REPEATER,
+                'label' => trans('nc::app.sections.announcement.messages'),
+                'add_label' => trans('nc::app.sections.announcement.add_message'),
+                'fields' => [
+                    [
+                        'key' => 'text',
+                        'type' => SectionSchema::TEXT,
+                        'label' => trans('nc::app.sections.announcement.text'),
+                    ],
+                    [
+                        'key' => 'link',
+                        'type' => SectionSchema::TEXT,
+                        'label' => trans('nc::app.sections.announcement.link'),
+                    ],
+                    [
+                        'key' => 'btn_text',
+                        'type' => SectionSchema::TEXT,
+                        'label' => trans('nc::app.sections.announcement.btn_text'),
+                    ],
+                ],
+            ],
+            [
                 'key' => 'text',
                 'type' => SectionSchema::TEXT,
                 'label' => trans('nc::app.sections.announcement.text'),

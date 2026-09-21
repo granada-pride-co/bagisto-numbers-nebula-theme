@@ -156,10 +156,35 @@ function showToast(message) {
 
 window.showToast = showToast;
 
+function initAnnouncementTicker() {
+  const ticker = document.querySelector("[data-nc-announcement-ticker]");
+  if (!ticker) return;
+
+  const slides = ticker.querySelectorAll("[data-nc-announcement-slide]");
+  if (slides.length <= 1) return;
+
+  const speed = parseInt(ticker.getAttribute("data-speed") || "4000", 10);
+  let currentIndex = 0;
+
+  setInterval(() => {
+    const currentSlide = slides[currentIndex];
+    currentSlide.classList.remove("opacity-100", "translate-y-0", "relative");
+    currentSlide.classList.add("opacity-0", "-translate-y-4", "absolute", "pointer-events-none");
+
+    currentIndex = (currentIndex + 1) % slides.length;
+
+    const nextSlide = slides[currentIndex];
+    nextSlide.classList.remove("opacity-0", "-translate-y-4", "absolute", "pointer-events-none");
+    nextSlide.classList.add("opacity-100", "translate-y-0", "relative");
+  }, speed);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initScrollReveal();
   initCartDrawer();
   initSearchModal();
   initMobileMenu();
   initQuickAdd();
+  initAnnouncementTicker();
 });
+

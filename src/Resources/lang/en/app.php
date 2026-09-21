@@ -61,7 +61,10 @@ return [
 
     'sections' => [
         'announcement' => [
-            'title' => 'Announcement Bar',
+            'title' => 'Rotating Announcement Bar',
+            'speed' => 'Rotation Speed',
+            'messages' => 'Promotional Messages',
+            'add_message' => 'Add Announcement Message',
             'text' => 'Announcement Text',
             'link' => 'Link URL',
             'btn_text' => 'Action Text',
