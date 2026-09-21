@@ -43,6 +43,24 @@ class SocialLineSection extends SectionType
                 'type' => SectionSchema::TEXT,
                 'label' => trans('nc::app.sections.social_line.link'),
             ],
+            [
+                'key' => 'items',
+                'type' => SectionSchema::REPEATER,
+                'label' => trans('nc::app.sections.social_line.items'),
+                'add_label' => trans('nc::app.sections.social_line.add_item'),
+                'fields' => [
+                    [
+                        'key' => 'image',
+                        'type' => SectionSchema::IMAGE,
+                        'label' => trans('nc::app.sections.social_line.image'),
+                    ],
+                    [
+                        'key' => 'link',
+                        'type' => SectionSchema::TEXT,
+                        'label' => trans('nc::app.sections.social_line.post_link'),
+                    ],
+                ],
+            ],
         ];
     }
 }

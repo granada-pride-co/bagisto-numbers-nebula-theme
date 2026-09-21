@@ -169,10 +169,14 @@ return [
             'link_url' => 'Link URL',
         ],
         'social_line' => [
-            'title' => 'Social Media Strip',
+            'title' => 'Social Media & Instagram Strip',
             'text' => 'Callout Text',
             'handle' => 'Account Handle (@username)',
             'link' => 'Account Link URL',
+            'items' => 'Instagram Gallery Photos',
+            'add_item' => 'Add Instagram Photo',
+            'image' => 'Post Image',
+            'post_link' => 'Post or Profile Link URL',
         ],
         'service_strip' => [
             'title' => 'Features & Highlights Strip',
