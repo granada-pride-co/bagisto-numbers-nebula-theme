@@ -2,6 +2,7 @@
 
 namespace NumbersNebula\NebulaCosmetics\Sections;
 
+use Webkul\Product\Repositories\ProductRepository;
 use Webkul\Theme\Sections\SectionType;
 use Webkul\Theme\SectionSchema;
 
@@ -65,6 +66,12 @@ class FeaturedProductsSection extends SectionType
                 'options' => $this->categoryOptions(),
             ],
             [
+                'value' => 'product_ids',
+                'label' => trans('nc::app.sections.featured_products.select_products'),
+                'multiple' => true,
+                'options' => $this->productOptions(),
+            ],
+            [
                 'value' => 'limit',
                 'label' => trans('nc::app.sections.featured_products.limit'),
                 'options' => [
@@ -73,6 +80,8 @@ class FeaturedProductsSection extends SectionType
                     ['value' => '8', 'label' => '8'],
                     ['value' => '10', 'label' => '10'],
                     ['value' => '12', 'label' => '12'],
+                    ['value' => '16', 'label' => '16'],
+                    ['value' => '20', 'label' => '20'],
                 ],
             ],
             [
@@ -84,5 +93,27 @@ class FeaturedProductsSection extends SectionType
                 ],
             ],
         ];
+    }
+
+    /**
+     * Products list for the multiselect filter picker.
+     *
+     * @return list<array{value: string, label: string}>
+     */
+    protected function productOptions(): array
+    {
+        try {
+            return app(ProductRepository::class)
+                ->all()
+                ->map(fn ($p) => [
+                    'value' => (string) $p->id,
+                    'label' => ($p->name ?: ('#'.$p->id)).' ('.($p->sku ?: $p->id).')',
+                ])
+                ->sortBy('label')
+                ->values()
+                ->all();
+        } catch (\Throwable $e) {
+            return [];
+        }
     }
 }

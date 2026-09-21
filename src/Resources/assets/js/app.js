@@ -179,6 +179,41 @@ function initAnnouncementTicker() {
   }, speed);
 }
 
+function initProductsSlider() {
+  const containers = document.querySelectorAll("[data-nc-slider-container]");
+
+  containers.forEach((container) => {
+    const parentSection = container.closest("section");
+    const prevBtn = parentSection?.querySelector("[data-nc-slider-prev]");
+    const nextBtn = parentSection?.querySelector("[data-nc-slider-next]");
+
+    if (!prevBtn || !nextBtn) return;
+
+    const getScrollStep = () => {
+      const firstCard = container.querySelector("article");
+      return firstCard ? firstCard.offsetWidth + 24 : 320;
+    };
+
+    const isRtl = document.documentElement.dir === "rtl" || document.body.dir === "rtl";
+
+    nextBtn.addEventListener("click", () => {
+      const step = getScrollStep();
+      container.scrollBy({
+        left: isRtl ? -step : step,
+        behavior: "smooth",
+      });
+    });
+
+    prevBtn.addEventListener("click", () => {
+      const step = getScrollStep();
+      container.scrollBy({
+        left: isRtl ? step : -step,
+        behavior: "smooth",
+      });
+    });
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initScrollReveal();
   initCartDrawer();
@@ -186,5 +221,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initMobileMenu();
   initQuickAdd();
   initAnnouncementTicker();
+  initProductsSlider();
 });
 
