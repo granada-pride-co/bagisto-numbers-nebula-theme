@@ -29,11 +29,26 @@ class ServiceStripSection extends SectionType
     {
         return [
             [
+                'key' => 'bg_color',
+                'type' => SectionSchema::TEXT,
+                'label' => trans('nc::app.sections.service_strip.bg_color'),
+            ],
+            [
                 'key' => 'items',
                 'type' => SectionSchema::REPEATER,
                 'label' => trans('nc::app.sections.service_strip.items'),
                 'add_label' => trans('nc::app.sections.service_strip.add_item'),
                 'fields' => [
+                    [
+                        'key' => 'image',
+                        'type' => SectionSchema::IMAGE,
+                        'label' => trans('nc::app.sections.service_strip.item_image'),
+                    ],
+                    [
+                        'key' => 'icon_name',
+                        'type' => SectionSchema::TEXT,
+                        'label' => trans('nc::app.sections.service_strip.item_icon'),
+                    ],
                     [
                         'key' => 'title',
                         'type' => SectionSchema::TEXT,
