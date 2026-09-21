@@ -61,7 +61,7 @@ return [
 
     'sections' => [
         'announcement' => [
-            'title' => 'Section 1: Announcement Bar',
+            'title' => 'Announcement Bar',
             'speed' => 'Rotation Speed (Seconds)',
             'bg_color' => 'Background Color Hex (e.g. #f089a8)',
             'text_color' => 'Text Color Hex (e.g. #2e2224)',
@@ -72,7 +72,7 @@ return [
             'btn_text' => 'Button Text',
         ],
         'header_nav' => [
-            'title' => 'Section 2: Navigation & Header',
+            'title' => 'Header, Logo & Navigation',
             'brand_title' => 'Store Name / Brand',
             'brand_subtitle' => 'Brand Subtitle',
             'font_arabic' => 'Arabic Font Family',
@@ -84,7 +84,7 @@ return [
             'link_url' => 'Link URL',
         ],
         'hero' => [
-            'title' => 'Section 2: Hero Banner',
+            'title' => 'Hero Banner (Dual Image)',
             'skin_image' => 'First Image (Primary)',
             'eyebrow' => 'Eyebrow Text',
             'headline' => 'Main Headline',
@@ -95,12 +95,12 @@ return [
             'brand_mark_text' => 'Overlay Text on Second Image',
         ],
         'manifesto' => [
-            'title' => 'Section 3: Quote & Statement Banner',
+            'title' => 'Quote & Statement Banner',
             'quote' => 'Quote / Statement Text',
             'author' => 'Author / Source',
         ],
         'concerns' => [
-            'title' => 'Section 4: Cards & Features Grid',
+            'title' => 'Cards & Features Grid',
             'kicker' => 'Section Kicker',
             'items' => 'Cards List',
             'add_concern' => 'Add Card',
@@ -113,8 +113,8 @@ return [
             'btn_link' => 'Button Link (Optional Override)',
         ],
         'campaign' => [
-            'title' => 'Section 5: Wide Promo Banner',
-            'bg_image' => 'Background Image',
+            'title' => 'Marketing Banner',
+            'bg_image' => 'Banner Image',
             'eyebrow' => 'Eyebrow Text',
             'title_field' => 'Main Headline',
             'description' => 'Description',
@@ -122,7 +122,7 @@ return [
             'btn_link' => 'Action Button Link',
         ],
         'featured_products' => [
-            'title' => 'Section 6: Products Grid',
+            'title' => 'Products Grid',
             'eyebrow' => 'Eyebrow Text',
             'title_field' => 'Section Title',
             'badge_text' => 'Product Badge (e.g. Bestseller)',
@@ -135,7 +135,7 @@ return [
             'oldest' => 'Oldest First',
         ],
         'routine' => [
-            'title' => 'Section 7: Steps & Services',
+            'title' => 'Process Steps & Features',
             'image' => 'Visual Image',
             'eyebrow' => 'Eyebrow Text',
             'title_field' => 'Main Headline',
@@ -149,7 +149,7 @@ return [
             'btn_link' => 'Action Button Link',
         ],
         'collections' => [
-            'title' => 'Section 8: Collections & Badges',
+            'title' => 'Collections & Categories Strip',
             'kicker' => 'Section Kicker',
             'items' => 'Collections List',
             'add_collection' => 'Add Collection',
@@ -159,7 +159,7 @@ return [
             'link' => 'Link URL',
         ],
         'rewards' => [
-            'title' => 'Section 9: Promo & Rewards Banner',
+            'title' => 'Promo & Rewards Banner',
             'image' => 'Promo Image',
             'eyebrow' => 'Eyebrow Text',
             'title_field' => 'Main Headline',
@@ -168,20 +168,20 @@ return [
             'link_url' => 'Link URL',
         ],
         'social_line' => [
-            'title' => 'Section 10: Social Media Strip',
+            'title' => 'Social Media Strip',
             'text' => 'Callout Text',
             'handle' => 'Account Handle (@username)',
             'link' => 'Account Link URL',
         ],
         'service_strip' => [
-            'title' => 'Section 11: Feature Pillars Strip',
+            'title' => 'Feature Pillars Strip',
             'items' => 'Pillars List',
             'add_item' => 'Add Pillar',
             'item_title' => 'Pillar Title',
             'item_desc' => 'Pillar Description',
         ],
         'newsletter' => [
-            'title' => 'Section 12: Newsletter Box',
+            'title' => 'Newsletter Box',
             'eyebrow' => 'Eyebrow Text',
             'title_field' => 'Main Headline',
             'description' => 'Description',
@@ -191,14 +191,14 @@ return [
             'btn_text' => 'Submit Button Text',
         ],
         'footer' => [
-            'title' => 'Section 13: Footer Information & Links',
+            'title' => 'Footer Information & Links',
             'brand_description' => 'Brand Description Text',
             'location' => 'Location Text',
             'copyright' => 'Copyright Notice',
             'social_links' => 'Social Handles Text',
         ],
         'html' => [
-            'title' => 'Custom Section: HTML & CSS Block',
+            'title' => 'Custom HTML & CSS Block',
             'section_title' => 'Internal Section Title',
             'html_content' => 'Custom HTML Code',
             'css_content' => 'Custom CSS Code',

@@ -31,7 +31,7 @@ class NebulaCosmeticsSectionsSeeder extends Seeder
 
         $sections = [
             [
-                'name' => 'القسم الأول: شريط الإعلانات الترويجي',
+                'name' => 'شريط الإعلانات الترويجي',
                 'type' => 'nc_announcement',
                 'sort_order' => 1,
                 'status' => 1,
@@ -51,7 +51,7 @@ class NebulaCosmeticsSectionsSeeder extends Seeder
                 ],
             ],
             [
-                'name' => 'القسم الثاني: الواجهة الرئيسية',
+                'name' => 'الواجهة الرئيسية (بنر مزدوج)',
                 'type' => 'nc_hero',
                 'sort_order' => 2,
                 'status' => 1,
@@ -77,7 +77,7 @@ class NebulaCosmeticsSectionsSeeder extends Seeder
                 ],
             ],
             [
-                'name' => 'القسم الثالث: بيان النص والاقتباس',
+                'name' => 'بيان النص والاقتباس',
                 'type' => 'nc_manifesto',
                 'sort_order' => 3,
                 'status' => 1,
@@ -95,7 +95,7 @@ class NebulaCosmeticsSectionsSeeder extends Seeder
                 ],
             ],
             [
-                'name' => 'القسم الرابع: شبكة البطاقات والمميزات',
+                'name' => 'شبكة البطاقات والمميزات',
                 'type' => 'nc_concerns',
                 'sort_order' => 4,
                 'status' => 1,
@@ -125,7 +125,7 @@ class NebulaCosmeticsSectionsSeeder extends Seeder
                 ],
             ],
             [
-                'name' => 'القسم الخامس: البانر الإعلاني العريض',
+                'name' => 'بنر تسويقي',
                 'type' => 'nc_campaign',
                 'sort_order' => 5,
                 'status' => 1,
@@ -149,7 +149,7 @@ class NebulaCosmeticsSectionsSeeder extends Seeder
                 ],
             ],
             [
-                'name' => 'القسم السادس: شبكة المنتجات',
+                'name' => 'شبكة المنتجات',
                 'type' => 'nc_featured_products',
                 'sort_order' => 6,
                 'status' => 1,
@@ -171,7 +171,7 @@ class NebulaCosmeticsSectionsSeeder extends Seeder
                 ],
             ],
             [
-                'name' => 'القسم السابع: خطوات الروتين والخدمات',
+                'name' => 'خطوات العمل والمميزات',
                 'type' => 'nc_routine',
                 'sort_order' => 7,
                 'status' => 1,
@@ -205,7 +205,7 @@ class NebulaCosmeticsSectionsSeeder extends Seeder
                 ],
             ],
             [
-                'name' => 'القسم الثامن: المجموعات والتصنيفات',
+                'name' => 'المجموعات والتصنيفات',
                 'type' => 'nc_collections',
                 'sort_order' => 8,
                 'status' => 1,
@@ -235,7 +235,7 @@ class NebulaCosmeticsSectionsSeeder extends Seeder
                 ],
             ],
             [
-                'name' => 'القسم التاسع: بانر العرض والمكافآت',
+                'name' => 'بنر العرض والمكافآت',
                 'type' => 'nc_rewards',
                 'sort_order' => 9,
                 'status' => 1,
@@ -259,7 +259,7 @@ class NebulaCosmeticsSectionsSeeder extends Seeder
                 ],
             ],
             [
-                'name' => 'القسم العاشر: شريط التواصل الاجتماعي',
+                'name' => 'شريط التواصل الاجتماعي',
                 'type' => 'nc_social_line',
                 'sort_order' => 10,
                 'status' => 1,
@@ -279,7 +279,7 @@ class NebulaCosmeticsSectionsSeeder extends Seeder
                 ],
             ],
             [
-                'name' => 'القسم الحادي عشر: شريط المزايا الأربعة',
+                'name' => 'شريط المزايا الأربعة',
                 'type' => 'nc_service_strip',
                 'sort_order' => 11,
                 'status' => 1,
@@ -305,7 +305,7 @@ class NebulaCosmeticsSectionsSeeder extends Seeder
                 ],
             ],
             [
-                'name' => 'القسم الثاني عشر: صندوق النشرة البريدية',
+                'name' => 'صندوق النشرة البريدية',
                 'type' => 'nc_newsletter',
                 'sort_order' => 12,
                 'status' => 1,
