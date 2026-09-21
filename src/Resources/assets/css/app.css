@@ -1,0 +1,429 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cream: #fbf8f1;
+  --paper: #fffefd;
+  --ink: #2e2224;
+  --line: rgba(46, 34, 36, 0.18);
+  --line-solid: #2e2224;
+  --pink: #f089a8;
+  --soft-pink: #f7b7ba;
+  --magenta: #bd1765;
+  --deep-magenta: #8f0e4b;
+  --mint: #91e4d9;
+  --lilac: #d9c7ff;
+  --gold: #c29958;
+  --gold-light: #d4af37;
+  
+  --font-serif: "Cormorant Garamond", "Amiri", "El Messiri", Georgia, serif;
+  --font-sans: "DM Sans", "IBM Plex Sans Arabic", "Tajawal", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "Courier Prime", "Courier New", monospace;
+
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background-color: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  -webkit-font-feature-settings: "locl" 0;
+  font-feature-settings: "locl" 0;
+}
+
+::selection {
+  background: var(--magenta);
+  color: #ffffff;
+}
+
+/* Typography Helpers */
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Brand Lockup */
+.nc-brand-lockup {
+  display: inline-grid;
+  grid-template-columns: auto auto;
+  border: 1px solid currentColor;
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  transition: opacity 0.2s ease;
+}
+
+.nc-brand-lockup:hover {
+  opacity: 0.85;
+}
+
+.nc-brand-lockup > span {
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  padding: 1px 12px 0;
+}
+
+.nc-brand-lockup > span + span {
+  border-left: 1px solid currentColor;
+}
+
+[dir="rtl"] .nc-brand-lockup > span + span {
+  border-left: none;
+  border-right: 1px solid currentColor;
+}
+
+.nc-brand-lockup__sub {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--magenta);
+}
+
+/* Announcement Bar */
+.nc-announcement {
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--pink);
+  border-bottom: 1px solid var(--line-solid);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  transition: background-color 0.25s ease;
+}
+
+.nc-announcement:hover {
+  background: var(--soft-pink);
+}
+
+/* Header */
+.nc-site-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  height: 84px;
+  display: grid;
+  grid-template-columns: 240px 1fr 240px;
+  align-items: center;
+  padding: 0 32px;
+  background: rgba(251, 248, 241, 0.95);
+  border-bottom: 1px solid var(--line-solid);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+@media (max-width: 1024px) {
+  .nc-site-header {
+    grid-template-columns: 1fr auto;
+    padding: 0 16px;
+    height: 72px;
+  }
+}
+
+.nc-nav-link {
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  transition: color 0.2s ease;
+}
+
+.nc-nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: -4px;
+  height: 2px;
+  background: var(--magenta);
+  transition: right 0.25s ease, left 0.25s ease;
+}
+
+[dir="rtl"] .nc-nav-link::after {
+  left: 100%;
+  right: 0;
+}
+
+.nc-nav-link:hover::after {
+  right: 0;
+  left: 0;
+}
+
+/* Split Screen Hero */
+.nc-hero {
+  height: calc(100vh - 122px);
+  min-height: 600px;
+  max-height: 920px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--line-solid);
+}
+
+@media (max-width: 900px) {
+  .nc-hero {
+    grid-template-columns: 1fr;
+    height: auto;
+    max-height: none;
+  }
+}
+
+.nc-hero__panel {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.nc-hero__panel + .nc-hero__panel {
+  border-left: 1px solid var(--line-solid);
+}
+
+[dir="rtl"] .nc-hero__panel + .nc-hero__panel {
+  border-left: none;
+  border-right: 1px solid var(--line-solid);
+}
+
+.nc-hero__panel > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.nc-hero__shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 35%, rgba(46, 34, 36, 0.78) 100%);
+}
+
+.nc-hero__copy {
+  position: absolute;
+  z-index: 2;
+  left: clamp(24px, 4vw, 64px);
+  right: clamp(24px, 4vw, 64px);
+  bottom: clamp(32px, 5vw, 72px);
+  color: #ffffff;
+}
+
+/* Product Presentation Art Boxes */
+.nc-product-art {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--pack, #f089a8);
+  border: 1px solid var(--line-solid);
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nc-product-art:hover {
+  transform: scale(1.02);
+}
+
+.nc-product-art--compact {
+  aspect-ratio: 1;
+  max-width: 160px;
+}
+
+.nc-product-art__label {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: #fff;
+  padding: 14px 20px;
+  border: 1px solid var(--line-solid);
+  box-shadow: 0 4px 12px rgba(46, 34, 36, 0.08);
+}
+
+/* Reveal on Scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Cart Drawer */
+#nc-cart-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(46, 34, 36, 0);
+  pointer-events: none;
+  transition: background 0.4s ease;
+}
+
+#nc-cart-drawer-overlay.is-open {
+  background: rgba(46, 34, 36, 0.55);
+  pointer-events: auto;
+}
+
+#nc-cart-drawer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  max-width: 440px;
+  z-index: 1001;
+  background: var(--cream);
+  border-left: 1px solid var(--line-solid);
+  box-shadow: -10px 0 35px rgba(46, 34, 36, 0.25);
+  transform: translateX(110%);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+[dir="rtl"] #nc-cart-drawer {
+  right: auto;
+  left: 0;
+  border-left: none;
+  border-right: 1px solid var(--line-solid);
+  box-shadow: 10px 0 35px rgba(46, 34, 36, 0.25);
+  transform: translateX(-110%);
+}
+
+#nc-cart-drawer.is-open {
+  transform: translateX(0);
+}
+
+/* Search Modal Layer */
+#nc-search-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(251, 248, 241, 0.98);
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  padding: 40px 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+#nc-search-layer.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Buttons */
+.nc-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border: 1px solid var(--line-solid);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.nc-btn--dark {
+  background: var(--ink);
+  color: #ffffff;
+}
+
+.nc-btn--dark:hover {
+  background: var(--magenta);
+  border-color: var(--magenta);
+}
+
+.nc-btn--light {
+  background: #ffffff;
+  color: var(--ink);
+}
+
+.nc-btn--light:hover {
+  background: var(--magenta);
+  color: #ffffff;
+  border-color: var(--magenta);
+}
+
+.nc-btn--magenta {
+  background: var(--magenta);
+  color: #ffffff;
+  border-color: var(--magenta);
+}
+
+.nc-btn--magenta:hover {
+  background: var(--deep-magenta);
+}
+
+/* Toast Notifications */
+#nc-toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  pointer-events: none;
+  max-width: 400px;
+}
+
+[dir="rtl"] #nc-toast-container {
+  right: auto;
+  left: 24px;
+}
+
+.nc-toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  background: var(--ink);
+  color: #ffffff;
+  border: 1px solid var(--magenta);
+  box-shadow: 0 8px 24px rgba(46, 34, 36, 0.2);
+  font-size: 14px;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.nc-toast.is-active {
+  transform: translateY(0);
+  opacity: 1;
+}

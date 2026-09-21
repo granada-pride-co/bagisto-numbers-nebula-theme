@@ -1,0 +1,28 @@
+{
+    "name": "numbers-nebula/nebula-cosmetics",
+    "description": "Nebula Cosmetics luxury beauty & skincare storefront theme for Bagisto 2.4.x / 2.5.x",
+    "type": "bagisto-package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Numbers Nebula",
+            "email": "info@numbersnebula.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "NumbersNebula\\NebulaCosmetics\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "NumbersNebula\\NebulaCosmetics\\Providers\\NebulaCosmeticsServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev"
+}
