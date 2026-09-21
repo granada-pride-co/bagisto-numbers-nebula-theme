@@ -41,10 +41,14 @@
             ],
         ];
     }
+
+    $bgColor = data_get($options, 'bg_color') ?: '#f089a8';
+    $textColor = data_get($options, 'text_color') ?: '#2e2224';
 @endphp
 
 <div
     class="nc-announcement relative overflow-hidden flex items-center justify-center px-4"
+    style="background-color: {{ $bgColor }}; color: {{ $textColor }};"
     data-nc-announcement-ticker
     data-speed="{{ $speed }}"
 >

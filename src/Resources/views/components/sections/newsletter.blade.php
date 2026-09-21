@@ -7,17 +7,23 @@
     $description = data_get($options, 'description') ?: ($isAr ? 'تركيبات جديدة، نصائح للبشرة، ووصول حصري قبل الجميع. محتوى قيّم وهادئ.' : 'New formulas, useful skin notes and first access. Nothing noisy.');
     $placeholder = data_get($options, 'placeholder') ?: ($isAr ? 'البريد الإلكتروني' : 'EMAIL ADDRESS');
     $btnText = data_get($options, 'btn_text') ?: ($isAr ? 'سجليني الآن' : 'SIGN ME UP');
+    $bgColor = data_get($options, 'bg_color') ?: '#f089a8';
+    $textColor = data_get($options, 'text_color') ?: '#2e2224';
 @endphp
 
-<section class="border-b border-[#2e2224] bg-[#fbf8f1] py-20 px-6 text-center" id="newsletter">
+<section
+    class="border-b border-[#2e2224] py-20 px-6 text-center transition-colors duration-300"
+    style="background-color: {{ $bgColor }}; color: {{ $textColor }};"
+    id="newsletter"
+>
     <div class="max-w-xl mx-auto flex flex-col items-center gap-4 reveal">
-        <p class="font-mono text-xs font-bold tracking-widest text-[#bd1765] uppercase">
+        <p class="font-mono text-xs font-bold tracking-widest uppercase opacity-90">
             {{ $eyebrow }}
         </p>
-        <h2 class="font-serif text-3xl md:text-5xl font-bold text-[#2e2224]">
+        <h2 class="font-serif text-3xl md:text-5xl font-bold tracking-tight">
             {{ $title }}
         </h2>
-        <p class="text-sm text-[#2e2224]/80 max-w-md mb-4 leading-relaxed">
+        <p class="text-sm opacity-90 max-w-md mb-4 leading-relaxed">
             {{ $description }}
         </p>
 

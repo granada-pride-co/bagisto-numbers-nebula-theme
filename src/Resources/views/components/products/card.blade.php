@@ -1,13 +1,17 @@
 @props([
-    'product',
+    'product' => null,
     'badge' => null,
 ])
 
 @php
+    if (! $product) {
+        return;
+    }
+
     $baseImage = product_image()->getProductBaseImage($product)['medium_image_url'] 
         ?? asset('themes/shop/nebula-cosmetics/images/cleo-hero-product.jpg');
     $badgeText = $badge ?: trans('nc::app.cart.bestseller');
-    $url = route('shop.product_or_category.index', $product->url_key);
+    $url = $product->url_key ? route('shop.product_or_category.index', $product->url_key) : '#';
 @endphp
 
 <article class="group flex flex-col justify-between border border-[#2e2224] bg-white transition-shadow hover:shadow-lg">

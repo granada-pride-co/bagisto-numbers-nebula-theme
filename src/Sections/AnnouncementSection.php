@@ -50,6 +50,16 @@ class AnnouncementSection extends SectionType
                 ],
             ],
             [
+                'key' => 'bg_color',
+                'type' => SectionSchema::TEXT,
+                'label' => trans('nc::app.sections.announcement.bg_color'),
+            ],
+            [
+                'key' => 'text_color',
+                'type' => SectionSchema::TEXT,
+                'label' => trans('nc::app.sections.announcement.text_color'),
+            ],
+            [
                 'key' => 'messages',
                 'type' => SectionSchema::REPEATER,
                 'label' => trans('nc::app.sections.announcement.messages'),

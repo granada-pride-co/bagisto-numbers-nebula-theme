@@ -63,6 +63,8 @@ return [
         'announcement' => [
             'title' => 'Section 1: Announcement Bar',
             'speed' => 'Rotation Speed (Seconds)',
+            'bg_color' => 'Background Color Hex (e.g. #f089a8)',
+            'text_color' => 'Text Color Hex (e.g. #2e2224)',
             'messages' => 'Promotional Messages',
             'add_message' => 'Add Message',
             'text' => 'Message Text',
@@ -75,6 +77,7 @@ return [
             'brand_subtitle' => 'Brand Subtitle',
             'font_arabic' => 'Arabic Font Family',
             'font_english' => 'English Font Family',
+            'primary_color' => 'Brand Accent / Primary Color (e.g. #bd1765)',
             'navigation_links' => 'Custom Navigation Links',
             'add_link' => 'Add Link',
             'link_label' => 'Link Label',
@@ -181,6 +184,8 @@ return [
             'title_field' => 'Main Headline',
             'description' => 'Description',
             'placeholder' => 'Input Placeholder',
+            'bg_color' => 'Background Color Hex (e.g. #f089a8)',
+            'text_color' => 'Text Color Hex (e.g. #2e2224)',
             'btn_text' => 'Submit Button Text',
         ],
         'footer' => [

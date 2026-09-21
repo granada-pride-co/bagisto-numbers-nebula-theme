@@ -49,6 +49,16 @@ class NewsletterSection extends SectionType
                 'label' => trans('nc::app.sections.newsletter.placeholder'),
             ],
             [
+                'key' => 'bg_color',
+                'type' => SectionSchema::TEXT,
+                'label' => trans('nc::app.sections.newsletter.bg_color'),
+            ],
+            [
+                'key' => 'text_color',
+                'type' => SectionSchema::TEXT,
+                'label' => trans('nc::app.sections.newsletter.text_color'),
+            ],
+            [
                 'key' => 'btn_text',
                 'type' => SectionSchema::TEXT,
                 'label' => trans('nc::app.sections.newsletter.btn_text'),
