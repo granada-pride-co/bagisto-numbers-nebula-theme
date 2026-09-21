@@ -49,6 +49,30 @@ class HeaderNavSection extends SectionType
                 'label' => trans('nc::app.sections.header_nav.brand_subtitle'),
             ],
             [
+                'key' => 'font_arabic',
+                'type' => SectionSchema::SELECT,
+                'label' => trans('nc::app.sections.header_nav.font_arabic'),
+                'options' => [
+                    ['value' => 'Tajawal', 'label' => 'Tajawal (تجوال)'],
+                    ['value' => 'IBM Plex Sans Arabic', 'label' => 'IBM Plex Sans Arabic'],
+                    ['value' => 'Amiri', 'label' => 'Amiri (أميري)'],
+                    ['value' => 'El Messiri', 'label' => 'El Messiri (المسيري)'],
+                    ['value' => 'Cairo', 'label' => 'Cairo (القاهرة)'],
+                ],
+            ],
+            [
+                'key' => 'font_english',
+                'type' => SectionSchema::SELECT,
+                'label' => trans('nc::app.sections.header_nav.font_english'),
+                'options' => [
+                    ['value' => 'Cormorant Garamond', 'label' => 'Cormorant Garamond (Editorial Serif)'],
+                    ['value' => 'DM Sans', 'label' => 'DM Sans (Clean Sans)'],
+                    ['value' => 'Plus Jakarta Sans', 'label' => 'Plus Jakarta Sans'],
+                    ['value' => 'Playfair Display', 'label' => 'Playfair Display'],
+                    ['value' => 'Inter', 'label' => 'Inter'],
+                ],
+            ],
+            [
                 'key' => 'links',
                 'type' => SectionSchema::REPEATER,
                 'label' => trans('nc::app.sections.header_nav.navigation_links'),

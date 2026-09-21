@@ -32,30 +32,51 @@
     $brandSubtitle = data_get($headerNavSection?->options, 'brand_subtitle') 
         ?: trans('nc::app.brand.subtitle');
 
+    $allLocales = $channel->locales()->orderBy('name')->get();
+    $currentLocale = core()->getCurrentLocale();
+    $allCurrencies = $channel->currencies;
+    $currentCurrency = core()->getCurrentCurrency();
+    $currentCurrencyCode = core()->getCurrentCurrencyCode();
+
+    $buildQueryUrl = function (array $params) {
+        $merged = array_merge(request()->query(), $params);
+        return url()->current() . '?' . http_build_query($merged);
+    };
+
     $visibleCategories = $categoryRepository->getVisibleCategoryTree($channel->root_category_id);
 
     $customLinks = data_get($headerNavSection?->options, 'links');
-    if (! empty($customLinks) && is_array($customLinks)) {
-        $navLinks = $customLinks;
-    } else {
-        $navLinks = [
-            ['label' => trans('nc::app.header.shop'), 'url' => route('shop.search.index')],
-            ['label' => trans('nc::app.header.concerns'), 'url' => '#concerns'],
-            ['label' => trans('nc::app.header.routine'), 'url' => '#routine'],
-            ['label' => trans('nc::app.header.rewards'), 'url' => '#rewards'],
-        ];
+    $hasCustomLinks = ! empty($customLinks) && is_array($customLinks);
 
-        if ($visibleCategories->count()) {
-            $catLinks = [];
-            foreach ($visibleCategories->take(4) as $cat) {
-                $catLinks[] = [
-                    'label' => mb_strtoupper($cat->name),
-                    'url'   => $cat->url ?: ($cat->slug ? route('shop.product_or_category.index', $cat->slug) : route('shop.search.index')),
-                ];
+    $navCategories = [];
+    if (! $hasCustomLinks && $visibleCategories->count()) {
+        foreach ($visibleCategories as $cat) {
+            $children = [];
+            if ($cat->children && $cat->children->count()) {
+                foreach ($cat->children as $child) {
+                    $subChildren = [];
+                    if ($child->children && $child->children->count()) {
+                        foreach ($child->children as $sub) {
+                            $subChildren[] = [
+                                'label' => $sub->name,
+                                'url'   => $sub->url ?: ($sub->slug ? route('shop.product_or_category.index', $sub->slug) : route('shop.search.index')),
+                            ];
+                        }
+                    }
+
+                    $children[] = [
+                        'label'    => $child->name,
+                        'url'      => $child->url ?: ($child->slug ? route('shop.product_or_category.index', $child->slug) : route('shop.search.index')),
+                        'children' => $subChildren,
+                    ];
+                }
             }
-            if (! empty($catLinks)) {
-                $navLinks = array_merge([['label' => trans('nc::app.header.home'), 'url' => route('shop.home.index')]], $catLinks);
-            }
+
+            $navCategories[] = [
+                'label'    => $cat->name,
+                'url'      => $cat->url ?: ($cat->slug ? route('shop.product_or_category.index', $cat->slug) : route('shop.search.index')),
+                'children' => $children,
+            ];
         }
     }
 @endphp
@@ -91,15 +112,151 @@
         </a>
     </div>
 
-    <nav class="hidden lg:flex items-center justify-center gap-8" aria-label="Main Navigation">
-        @foreach ($navLinks as $link)
-            <a href="{{ $link['url'] ?? '#' }}" class="nc-nav-link">
-                {{ $link['label'] ?? '' }}
+    <nav class="hidden lg:flex items-center justify-center gap-7" aria-label="Main Navigation">
+        <a href="{{ route('shop.home.index') }}" class="nc-nav-link {{ request()->routeIs('shop.home.index') ? 'text-[#bd1765]' : '' }}">
+            {{ trans('nc::app.header.home') }}
+        </a>
+
+        @if ($hasCustomLinks)
+            @foreach ($customLinks as $link)
+                <a href="{{ $link['url'] ?? '#' }}" class="nc-nav-link">
+                    {{ $link['label'] ?? '' }}
+                </a>
+            @endforeach
+        @elseif (! empty($navCategories))
+            @foreach ($navCategories as $catItem)
+                @if (! empty($catItem['children']))
+                    <div class="relative group/menu py-2">
+                        <a
+                            href="{{ $catItem['url'] }}"
+                            class="nc-nav-link inline-flex items-center gap-1 cursor-pointer"
+                        >
+                            <span>{{ $catItem['label'] }}</span>
+                            <svg class="w-3 h-3 opacity-60 transition-transform duration-200 group-hover/menu:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </a>
+
+                        <div class="invisible opacity-0 group-hover/menu:visible group-hover/menu:opacity-100 transition-all duration-200 absolute top-full start-0 pt-2 z-50 min-w-[220px]">
+                            <div class="bg-white border border-[#2e2224] shadow-xl p-3 space-y-1">
+                                <a
+                                    href="{{ $catItem['url'] }}"
+                                    class="block px-3 py-1.5 text-xs font-mono font-bold text-[#bd1765] hover:bg-[#fbf8f1] border-b border-[#2e2224]/10 mb-1 uppercase"
+                                >
+                                    {{ trans('nc::app.footer.shop_all') }} ({{ $catItem['label'] }})
+                                </a>
+
+                                @foreach ($catItem['children'] as $child)
+                                    <div class="relative group/submenu">
+                                        <a
+                                            href="{{ $child['url'] }}"
+                                            class="flex items-center justify-between px-3 py-1.5 text-xs font-serif hover:text-[#bd1765] hover:bg-[#fbf8f1] transition-colors"
+                                        >
+                                            <span>{{ $child['label'] }}</span>
+                                            @if (! empty($child['children']))
+                                                <svg class="w-3 h-3 rtl:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path d="M9 18l6-6-6-6"/>
+                                                </svg>
+                                            @endif
+                                        </a>
+
+                                        @if (! empty($child['children']))
+                                            <div class="invisible opacity-0 group-hover/submenu:visible group-hover/submenu:opacity-100 transition-all duration-200 absolute top-0 start-full ps-1 z-50 min-w-[200px]">
+                                                <div class="bg-white border border-[#2e2224] shadow-xl p-2 space-y-1">
+                                                    @foreach ($child['children'] as $sub)
+                                                        <a
+                                                            href="{{ $sub['url'] }}"
+                                                            class="block px-3 py-1.5 text-xs font-serif hover:text-[#bd1765] hover:bg-[#fbf8f1]"
+                                                        >
+                                                            {{ $sub['label'] }}
+                                                        </a>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        @endif
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                @else
+                    <a href="{{ $catItem['url'] }}" class="nc-nav-link">
+                        {{ $catItem['label'] }}
+                    </a>
+                @endif
+            @endforeach
+        @else
+            <a href="{{ route('shop.search.index') }}" class="nc-nav-link">
+                {{ trans('nc::app.header.shop') }}
             </a>
-        @endforeach
+            <a href="#concerns" class="nc-nav-link">
+                {{ trans('nc::app.header.concerns') }}
+            </a>
+            <a href="#routine" class="nc-nav-link">
+                {{ trans('nc::app.header.routine') }}
+            </a>
+            <a href="#rewards" class="nc-nav-link">
+                {{ trans('nc::app.header.rewards') }}
+            </a>
+        @endif
     </nav>
 
-    <div class="flex items-center justify-end gap-4">
+    <div class="flex items-center justify-end gap-3">
+        <div class="relative group">
+            <button
+                type="button"
+                class="p-2 flex items-center gap-1.5 text-[#2e2224] hover:text-[#bd1765] transition-colors text-xs font-mono font-bold select-none cursor-pointer"
+                aria-label="{{ trans('nc::app.header.language') }} / {{ trans('nc::app.header.currency') }}"
+            >
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                </svg>
+                <span class="hidden xl:inline uppercase tracking-wider text-[11px]">
+                    {{ $currentLocale?->code }} · {{ $currentCurrencyCode }}
+                </span>
+                <svg class="w-3 h-3 text-[#2e2224]/60 transition-transform duration-200 group-hover:rotate-180 hidden sm:inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5"/>
+                </svg>
+            </button>
+
+            <div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 absolute top-full end-0 mt-1 w-64 bg-white border border-[#2e2224] shadow-2xl p-4 z-50">
+                <div class="mb-3.5 pb-3 border-b border-[#2e2224]/15">
+                    <span class="block text-[10px] font-mono uppercase tracking-wider text-[#bd1765] font-bold mb-2">
+                        {{ trans('nc::app.header.language') }}
+                    </span>
+                    <div class="grid grid-cols-2 gap-1.5">
+                        @foreach ($allLocales as $loc)
+                            <a
+                                href="{{ $buildQueryUrl(['locale' => $loc->code]) }}"
+                                class="flex items-center justify-between px-2.5 py-1.5 text-xs font-serif transition-colors border {{ $loc->code === app()->getLocale() ? 'bg-[#2e2224] text-white border-[#2e2224]' : 'text-[#2e2224] border-[#2e2224]/20 hover:border-[#bd1765] hover:text-[#bd1765] hover:bg-[#fbf8f1]' }}"
+                            >
+                                <span>{{ $loc->name }}</span>
+                                <span class="text-[10px] uppercase font-mono {{ $loc->code === app()->getLocale() ? 'text-white/80' : 'text-[#2e2224]/60' }}">{{ $loc->code }}</span>
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+
+                <div>
+                    <span class="block text-[10px] font-mono uppercase tracking-wider text-[#bd1765] font-bold mb-2">
+                        {{ trans('nc::app.header.currency') }}
+                    </span>
+                    <div class="grid grid-cols-2 gap-1.5">
+                        @foreach ($allCurrencies as $cur)
+                            <a
+                                href="{{ $buildQueryUrl(['currency' => $cur->code]) }}"
+                                class="flex items-center justify-between px-2.5 py-1.5 text-xs font-mono transition-colors border {{ $cur->code === $currentCurrencyCode ? 'bg-[#2e2224] text-white border-[#2e2224]' : 'text-[#2e2224] border-[#2e2224]/20 hover:border-[#bd1765] hover:text-[#bd1765] hover:bg-[#fbf8f1]' }}"
+                            >
+                                <span class="font-bold">{{ $cur->code }}</span>
+                                <span class="text-[11px]">{{ $cur->symbol }}</span>
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <button
             type="button"
             data-nc-search-open
@@ -125,20 +282,20 @@
             </a>
 
             @if ($customer)
-                <div class="absolute end-0 top-full mt-2 w-48 bg-white border border-[#2e2224] shadow-xl p-2 hidden group-hover:block z-50">
+                <div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 absolute end-0 top-full mt-1 w-48 bg-white border border-[#2e2224] shadow-xl p-2 z-50">
                     <div class="px-3 py-2 border-b border-[#2e2224]/10 text-xs font-mono font-bold text-[#bd1765]">
                         {{ $customer->first_name }}
                     </div>
-                    <a href="{{ route('shop.customers.account.orders.index') }}" class="block px-3 py-2 text-xs hover:bg-[#fbf8f1]">
+                    <a href="{{ route('shop.customers.account.orders.index') }}" class="block px-3 py-2 text-xs font-serif hover:bg-[#fbf8f1]">
                         {{ trans('nc::app.header.orders') }}
                     </a>
-                    <a href="{{ route('shop.customers.account.profile.index') }}" class="block px-3 py-2 text-xs hover:bg-[#fbf8f1]">
+                    <a href="{{ route('shop.customers.account.profile.index') }}" class="block px-3 py-2 text-xs font-serif hover:bg-[#fbf8f1]">
                         {{ trans('nc::app.header.profile') }}
                     </a>
                     <form action="{{ route('shop.customer.session.destroy') }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="w-full text-start px-3 py-2 text-xs text-red-600 hover:bg-red-50">
+                        <button type="submit" class="w-full text-start px-3 py-2 text-xs font-serif text-red-600 hover:bg-red-50">
                             {{ trans('nc::app.header.logout') }}
                         </button>
                     </form>
@@ -177,12 +334,59 @@
     </div>
 </header>
 
-<div data-nc-mobile-nav class="hidden lg:hidden fixed inset-x-0 top-[122px] z-30 bg-[#fbf8f1] border-b border-[#2e2224] p-6 shadow-2xl">
+<div data-nc-mobile-nav class="hidden lg:hidden fixed inset-x-0 top-[122px] z-30 bg-[#fbf8f1] border-b border-[#2e2224] p-6 shadow-2xl max-h-[calc(100vh-140px)] overflow-y-auto">
     <div class="flex flex-col gap-4">
-        @foreach ($navLinks as $link)
-            <a href="{{ $link['url'] ?? '#' }}" class="nc-nav-link text-base">
-                {{ $link['label'] ?? '' }}
-            </a>
-        @endforeach
+        <a href="{{ route('shop.home.index') }}" class="nc-nav-link text-base">
+            {{ trans('nc::app.header.home') }}
+        </a>
+
+        @if ($hasCustomLinks)
+            @foreach ($customLinks as $link)
+                <a href="{{ $link['url'] ?? '#' }}" class="nc-nav-link text-base">
+                    {{ $link['label'] ?? '' }}
+                </a>
+            @endforeach
+        @elseif (! empty($navCategories))
+            @foreach ($navCategories as $catItem)
+                <div class="space-y-1">
+                    <a href="{{ $catItem['url'] }}" class="nc-nav-link text-base font-bold text-[#bd1765]">
+                        {{ $catItem['label'] }}
+                    </a>
+                    @if (! empty($catItem['children']))
+                        <div class="ps-4 flex flex-col gap-2 pt-1 border-s border-[#2e2224]/15">
+                            @foreach ($catItem['children'] as $child)
+                                <a href="{{ $child['url'] }}" class="text-sm font-serif text-[#2e2224] hover:text-[#bd1765]">
+                                    {{ $child['label'] }}
+                                </a>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
+            @endforeach
+        @endif
+
+        <div class="pt-4 border-t border-[#2e2224]/15 space-y-3">
+            <span class="block text-xs font-mono font-bold text-[#bd1765] uppercase">
+                {{ trans('nc::app.header.language') }} / {{ trans('nc::app.header.currency') }}
+            </span>
+            <div class="flex flex-wrap gap-2">
+                @foreach ($allLocales as $loc)
+                    <a
+                        href="{{ $buildQueryUrl(['locale' => $loc->code]) }}"
+                        class="px-3 py-1 text-xs border {{ $loc->code === app()->getLocale() ? 'bg-[#2e2224] text-white border-[#2e2224]' : 'border-[#2e2224]/20' }}"
+                    >
+                        {{ $loc->name }}
+                    </a>
+                @endforeach
+                @foreach ($allCurrencies as $cur)
+                    <a
+                        href="{{ $buildQueryUrl(['currency' => $cur->code]) }}"
+                        class="px-3 py-1 text-xs font-mono border {{ $cur->code === $currentCurrencyCode ? 'bg-[#2e2224] text-white border-[#2e2224]' : 'border-[#2e2224]/20' }}"
+                    >
+                        {{ $cur->code }}
+                    </a>
+                @endforeach
+            </div>
+        </div>
     </div>
 </div>

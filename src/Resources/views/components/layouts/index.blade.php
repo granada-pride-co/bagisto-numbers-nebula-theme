@@ -4,6 +4,18 @@
     'hasFooter'  => true,
 ])
 
+@inject('sectionRepository', 'Webkul\Theme\Repositories\SectionRepository')
+
+@php
+    $channel = core()->getCurrentChannel();
+    $headerNavSection = $sectionRepository->findOneOfType(
+        'nc_header_nav',
+        $channel->id,
+        $channel->theme,
+        app()->getLocale()
+    );
+@endphp
+
 <!DOCTYPE html>
 <html
     lang="{{ app()->getLocale() }}"
@@ -33,7 +45,21 @@
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Courier+Prime:wght@400;700&family=DM+Sans:wght@400;500;700&family=IBM+Plex+Sans+Arabic:wght@400;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Courier+Prime:wght@400;700&family=DM+Sans:wght@400;500;700&family=El+Messiri:wght@400;600;700&family=IBM+Plex+Sans+Arabic:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+        @php
+            $selectedArFont = data_get($headerNavSection?->options, 'font_arabic') ?: 'Tajawal';
+            $selectedEnFont = data_get($headerNavSection?->options, 'font_english') ?: 'Cormorant Garamond';
+        @endphp
+
+        <style>
+            :root {
+                --selected-font-ar: "{{ $selectedArFont }}", "IBM Plex Sans Arabic", "Tajawal", sans-serif;
+                --selected-font-en: "{{ $selectedEnFont }}", "DM Sans", -apple-system, sans-serif;
+                --font-sans: {{ app()->getLocale() === 'ar' ? 'var(--selected-font-ar)' : 'var(--selected-font-en)' }};
+                --font-serif: {{ app()->getLocale() === 'ar' ? 'var(--selected-font-ar)' : 'var(--selected-font-en)' }};
+            }
+        </style>
 
         @bagistoVite(['src/Resources/assets/css/app.css', 'src/Resources/assets/js/app.js'])
 
