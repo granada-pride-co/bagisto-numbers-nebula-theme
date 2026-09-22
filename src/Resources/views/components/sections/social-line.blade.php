@@ -8,12 +8,12 @@
     $configuredItems = (array) data_get($options, 'items', []);
 
     $defaultPhotos = [
-        ['image' => 'images/cleo-concern-portrait.jpg', 'link' => $link],
-        ['image' => 'images/cleo-concern-application.jpg', 'link' => $link],
-        ['image' => 'images/cleo-hero-product.jpg', 'link' => $link],
-        ['image' => 'images/cleo-concern-texture.jpg', 'link' => $link],
-        ['image' => 'images/cleo-hero-skin.jpg', 'link' => $link],
-        ['image' => 'images/cleo-ritual-wide.jpg', 'link' => $link],
+        ['image' => asset('themes/shop/nebula-cosmetics/images/cleo-concern-portrait.jpg'), 'link' => $link],
+        ['image' => asset('themes/shop/nebula-cosmetics/images/cleo-concern-application.jpg'), 'link' => $link],
+        ['image' => asset('themes/shop/nebula-cosmetics/images/cleo-hero-product.jpg'), 'link' => $link],
+        ['image' => asset('themes/shop/nebula-cosmetics/images/cleo-concern-texture.jpg'), 'link' => $link],
+        ['image' => asset('themes/shop/nebula-cosmetics/images/cleo-hero-skin.jpg'), 'link' => $link],
+        ['image' => asset('themes/shop/nebula-cosmetics/images/cleo-ritual-wide.jpg'), 'link' => $link],
     ];
 
     $items = ! empty($configuredItems) ? $configuredItems : $defaultPhotos;
@@ -50,17 +50,10 @@
                 $itemImage = data_get($item, 'image');
                 $itemLink = data_get($item, 'link') ?: $link;
 
-                if ($itemImage && \Illuminate\Support\Str::startsWith($itemImage, ['http://', 'https://', '/storage/'])) {
-                    $imgSrc = $itemImage;
-                } elseif ($itemImage && \Illuminate\Support\Facades\Storage::exists($itemImage)) {
-                    $imgSrc = \Illuminate\Support\Facades\Storage::url($itemImage);
-                } elseif ($itemImage && file_exists(public_path($itemImage))) {
-                    $imgSrc = asset($itemImage);
-                } elseif ($itemImage) {
-                    $imgSrc = nc_asset($itemImage);
-                } else {
-                    $imgSrc = nc_asset('images/cleo-concern-portrait.jpg');
-                }
+                $imgSrc = \NumbersNebula\NebulaCosmetics\Helpers\MediaHelper::url(
+                    $itemImage,
+                    asset('themes/shop/nebula-cosmetics/images/cleo-concern-portrait.jpg')
+                );
             @endphp
 
             <a
