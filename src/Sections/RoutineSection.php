@@ -29,6 +29,11 @@ class RoutineSection extends SectionType
     {
         return [
             [
+                'key' => 'bg_color',
+                'type' => SectionSchema::TEXT,
+                'label' => trans('nc::app.sections.service_strip.bg_color'),
+            ],
+            [
                 'key' => 'image',
                 'type' => SectionSchema::IMAGE,
                 'label' => trans('nc::app.sections.routine.image'),

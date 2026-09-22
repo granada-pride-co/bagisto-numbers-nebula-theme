@@ -2,6 +2,8 @@
 
 @php
     $isAr = app()->getLocale() === 'ar';
+    $bgColor = data_get($options, 'bg_color') ?: '#91e4d9';
+
     $image = \NumbersNebula\NebulaCosmetics\Helpers\MediaHelper::url(
         data_get($options, 'image'),
         asset('themes/shop/nebula-cosmetics/images/cleo-concern-portrait.jpg')
@@ -24,9 +26,9 @@
     $btnLink = data_get($options, 'btn_link') ?: '#shop';
 @endphp
 
-<section class="border-b border-[#2e2224] bg-[#fbf8f1]" id="routine">
+<section class="border-b border-[#2e2224]" id="routine" style="background-color: {{ $bgColor }};">
     <div class="grid grid-cols-1 lg:grid-cols-2">
-        <div class="border-b lg:border-b-0 lg:border-e border-[#2e2224] overflow-hidden min-h-[400px]">
+        <div class="border-b lg:border-b-0 lg:border-e border-[#2e2224] overflow-hidden min-h-[450px]">
             <img
                 src="{{ $image }}"
                 alt="{{ $title }}"
@@ -34,28 +36,28 @@
             />
         </div>
 
-        <div class="p-8 md:p-16 flex flex-col justify-center reveal">
-            <p class="font-mono text-xs font-bold tracking-widest text-[#bd1765] uppercase mb-3">
+        <div class="p-8 md:p-16 flex flex-col justify-center reveal" style="background-color: {{ $bgColor }};">
+            <p class="font-mono text-xs font-bold tracking-widest text-[#2e2224]/80 uppercase mb-3">
                 {{ $eyebrow }}
             </p>
-            <h2 class="font-serif text-3xl md:text-5xl font-bold text-[#2e2224] leading-tight mb-4">
+            <h2 class="font-mono text-3xl md:text-5xl font-bold text-[#2e2224] leading-tight mb-4">
                 {!! nl2br(e($title)) !!}
             </h2>
-            <p class="text-sm md:text-base text-[#2e2224]/80 leading-relaxed mb-8">
+            <p class="font-mono text-xs md:text-sm text-[#2e2224]/85 leading-relaxed mb-8 max-w-lg">
                 {{ $description }}
             </p>
 
-            <ol class="flex flex-col gap-6 mb-10">
+            <ol class="flex flex-col gap-5 mb-10">
                 @foreach ($steps as $step)
-                    <li class="flex items-start gap-4 pb-4 border-b border-[#2e2224]/15">
-                        <span class="font-mono text-lg font-bold text-[#bd1765]">
+                    <li class="flex items-start gap-4 pb-4 border-b border-[#2e2224]">
+                        <span class="font-mono text-xs font-bold text-[#2e2224] shrink-0 pt-0.5">
                             {{ $step['number'] ?? '' }}
                         </span>
                         <div>
                             <h3 class="font-mono text-xs font-bold tracking-wider text-[#2e2224] uppercase mb-1">
                                 {{ $step['title'] ?? '' }}
                             </h3>
-                            <p class="text-xs text-[#2e2224]/75">
+                            <p class="font-mono text-[11px] text-[#2e2224]/80 leading-normal">
                                 {{ $step['copy'] ?? '' }}
                             </p>
                         </div>
@@ -64,7 +66,7 @@
             </ol>
 
             <div>
-                <a href="{{ $btnLink }}" class="nc-btn nc-btn--dark">
+                <a href="{{ $btnLink }}" class="nc-btn nc-btn--dark inline-block">
                     {{ $btnText }}
                 </a>
             </div>
