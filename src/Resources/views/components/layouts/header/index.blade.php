@@ -84,8 +84,9 @@
 <x-nc::sections.announcement :options="$announcementSection?->options ?? []" />
 
 <header class="nc-site-header">
-    <div class="flex items-center">
-        <a href="{{ route('shop.home.index') }}" class="nc-brand-lockup text-[#2e2224] hover:text-[#bd1765]">
+    <div class="nc-site-header__container max-w-7xl mx-auto w-full h-full grid grid-cols-[auto_1fr_auto] lg:grid-cols-[240px_1fr_240px] items-center">
+        <div class="flex items-center">
+            <a href="{{ route('shop.home.index') }}" class="nc-brand-lockup text-[#2e2224] hover:text-[#bd1765]">
             @if ($channel->logo_url)
                 <img src="{{ $channel->logo_url }}" alt="{{ $channel->name }}" class="h-9 w-auto max-h-9 object-contain" />
             @else
@@ -323,6 +324,7 @@
                 <path d="M4 6h16M4 12h16M4 18h16"/>
             </svg>
         </button>
+    </div>
     </div>
 </header>
 

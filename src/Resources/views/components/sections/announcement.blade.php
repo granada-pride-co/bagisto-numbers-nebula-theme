@@ -47,17 +47,18 @@
 @endphp
 
 <div
-    class="nc-announcement relative overflow-hidden flex items-center justify-center px-4"
+    class="nc-announcement relative overflow-hidden flex items-center justify-center px-4 md:px-6"
     style="background-color: {{ $bgColor }}; color: {{ $textColor }};"
     data-nc-announcement-ticker
     data-speed="{{ $speed }}"
 >
-    @foreach ($messages as $index => $msg)
-        <a
-            href="{{ $msg['link'] }}"
-            data-nc-announcement-slide="{{ $index }}"
-            class="nc-announcement-slide flex items-center justify-center gap-2 text-center transition-all duration-700 w-full {{ $index === 0 ? 'opacity-100 translate-y-0 relative' : 'opacity-0 -translate-y-4 absolute inset-0 pointer-events-none' }}"
-        >
+    <div class="max-w-7xl mx-auto w-full flex items-center justify-center">
+        @foreach ($messages as $index => $msg)
+            <a
+                href="{{ $msg['link'] }}"
+                data-nc-announcement-slide="{{ $index }}"
+                class="nc-announcement-slide flex items-center justify-center gap-2 text-center transition-all duration-700 w-full {{ $index === 0 ? 'opacity-100 translate-y-0 relative' : 'opacity-0 -translate-y-4 absolute inset-0 pointer-events-none' }}"
+            >
             <span>{{ $msg['text'] }}</span>
             <span class="inline-flex items-center gap-1 underline underline-offset-2 shrink-0">
                 {{ $msg['btn_text'] }}
@@ -66,5 +67,6 @@
                 </svg>
             </span>
         </a>
-    @endforeach
+        @endforeach
+    </div>
 </div>

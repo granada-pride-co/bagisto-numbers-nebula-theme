@@ -17,8 +17,8 @@
   --gold: #c29958;
   --gold-light: #d4af37;
   
-  --font-serif: "Cormorant Garamond", "Amiri", "El Messiri", Georgia, serif;
-  --font-sans: "DM Sans", "IBM Plex Sans Arabic", "Tajawal", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: "Courier Prime", "Courier New", monospace;
+  --font-sans: "Courier Prime", "Courier New", monospace;
   --font-mono: "Courier Prime", "Courier New", monospace;
 
   scroll-behavior: smooth;
@@ -124,21 +124,21 @@ body {
   top: 0;
   z-index: 40;
   height: 84px;
-  display: grid;
-  grid-template-columns: 240px 1fr 240px;
-  align-items: center;
-  padding: 0 32px;
   background: rgba(251, 248, 241, 0.95);
   border-bottom: 1px solid var(--line-solid);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  padding: 0 24px;
+}
+
+.nc-site-header__container {
+  height: 100%;
 }
 
 @media (max-width: 1024px) {
   .nc-site-header {
-    grid-template-columns: 1fr auto;
-    padding: 0 16px;
     height: 72px;
+    padding: 0 16px;
   }
 }
 

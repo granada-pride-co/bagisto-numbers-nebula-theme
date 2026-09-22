@@ -48,18 +48,19 @@
         <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800&family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Courier+Prime:wght@400;700&family=DM+Sans:wght@400;500;700&family=El+Messiri:wght@400;600;700&family=IBM+Plex+Sans+Arabic:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Readex+Pro:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 
         @php
-            $selectedArFont = data_get($headerNavSection?->options, 'font_arabic') ?: 'Alexandria';
-            $selectedEnFont = data_get($headerNavSection?->options, 'font_english') ?: 'Cormorant Garamond';
+            $selectedArFont = data_get($headerNavSection?->options, 'font_arabic') ?: 'Courier Prime';
+            $selectedEnFont = data_get($headerNavSection?->options, 'font_english') ?: 'Courier Prime';
             $primaryColor = data_get($headerNavSection?->options, 'primary_color') ?: '#bd1765';
         @endphp
 
         <style>
             :root {
                 --magenta: {{ $primaryColor }};
-                --selected-font-ar: "{{ $selectedArFont }}", "Alexandria", "Tajawal", "IBM Plex Sans Arabic", sans-serif;
-                --selected-font-en: "{{ $selectedEnFont }}", "DM Sans", -apple-system, sans-serif;
+                --selected-font-ar: "{{ $selectedArFont }}", "Courier Prime", "Courier New", monospace;
+                --selected-font-en: "{{ $selectedEnFont }}", "Courier Prime", "Courier New", monospace;
                 --font-sans: {{ app()->getLocale() === 'ar' ? 'var(--selected-font-ar)' : 'var(--selected-font-en)' }};
                 --font-serif: {{ app()->getLocale() === 'ar' ? 'var(--selected-font-ar)' : 'var(--selected-font-en)' }};
+                --font-mono: "Courier Prime", "Courier New", monospace;
             }
         </style>
 
