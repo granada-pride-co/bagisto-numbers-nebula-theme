@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Facades\Route; @endphp
 <x-nc::layouts :title="trans('nc::app.customer.register.title')">
     @push('meta')
         <meta name="description" content="{{ trans('nc::app.customer.register.title') }}"/>
@@ -39,7 +40,8 @@
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <label for="first_name" class="block font-mono text-xs font-bold uppercase tracking-wider text-[#2e2224] mb-1.5">
+                            <label for="first_name"
+                                   class="block font-mono text-xs font-bold uppercase tracking-wider text-[#2e2224] mb-1.5">
                                 {{ trans('nc::app.customer.register.first_name') }} *
                             </label>
                             <input
@@ -53,7 +55,8 @@
                         </div>
 
                         <div>
-                            <label for="last_name" class="block font-mono text-xs font-bold uppercase tracking-wider text-[#2e2224] mb-1.5">
+                            <label for="last_name"
+                                   class="block font-mono text-xs font-bold uppercase tracking-wider text-[#2e2224] mb-1.5">
                                 {{ trans('nc::app.customer.register.last_name') }} *
                             </label>
                             <input
@@ -98,7 +101,8 @@
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <label for="password" class="block font-mono text-xs font-bold uppercase tracking-wider text-[#2e2224] mb-1.5">
+                            <label for="password"
+                                   class="block font-mono text-xs font-bold uppercase tracking-wider text-[#2e2224] mb-1.5">
                                 {{ trans('nc::app.customer.register.password') }} *
                             </label>
                             <input
@@ -111,7 +115,8 @@
                         </div>
 
                         <div>
-                            <label for="password_confirmation" class="block font-mono text-xs font-bold uppercase tracking-wider text-[#2e2224] mb-1.5">
+                            <label for="password_confirmation"
+                                   class="block font-mono text-xs font-bold uppercase tracking-wider text-[#2e2224] mb-1.5">
                                 {{ trans('nc::app.customer.register.confirm_password') }} *
                             </label>
                             <input

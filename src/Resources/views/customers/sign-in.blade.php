@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Facades\Route; @endphp
 <x-nc::layouts :title="trans('nc::app.customer.login.title')">
     @push('meta')
         <meta name="description" content="{{ trans('nc::app.customer.login.title') }}"/>
@@ -108,7 +109,7 @@
                         {{ trans('nc::app.customer.login.no_account') }}
                     </p>
                     <a
-                        href="{{ route('shop.customers.register.index') }}"
+                        href="{{ Route::has('shop.customers.register.index') ? route('shop.customers.register.index') : '#' }}"
                         class="font-mono text-xs font-bold uppercase text-[#bd1765] hover:underline tracking-wider"
                     >
                         {{ trans('nc::app.customer.login.sign_up_link') }} &rarr;
