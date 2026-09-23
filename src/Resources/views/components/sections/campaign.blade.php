@@ -38,7 +38,7 @@
     $textColor = data_get($options, 'text_color') ?: '#ffffff';
 @endphp
 
-<section class="relative min-h-[480px] md:min-h-[580px] flex items-end justify-center border-b border-[#2e2224] overflow-hidden" dir="{{ $isAr ? 'rtl' : 'ltr' }}" style="{{ $bgColor ? 'background-color: ' . $bgColor . ';' : '' }} color: {{ $textColor }};">
+<section class="relative min-h-[480px] md:min-h-[580px] flex items-end justify-center border-b border-[#2e2224] overflow-hidden" dir="{{ $isAr ? 'rtl' : 'ltr' }}" style="{{ $bgColor ? 'background-color: ' . $bgColor . ';' : '' }}">
     <img
         src="{{ $bgImage }}"
         alt="{{ $title }}"
@@ -50,7 +50,7 @@
         <p class="font-mono text-xs font-bold tracking-widest uppercase mb-3 opacity-90" style="color: {{ $textColor }};">
             {{ $eyebrow }}
         </p>
-        <h2 class="font-serif text-3xl md:text-5xl font-bold mb-4 leading-tight">
+        <h2 class="font-serif text-3xl md:text-5xl font-bold mb-4 leading-tight" style="color: {{ $textColor }};">
             {{ $title }}
         </h2>
         <p class="text-sm md:text-base text-white/85 mb-8 leading-relaxed">

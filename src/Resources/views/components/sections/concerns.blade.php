@@ -51,10 +51,10 @@
     $textColor = data_get($options, 'text_color') ?: '#2e2224';
 @endphp
 
-<section class="border-b border-t border-[var(--section-color,#2e2224)] overflow-hidden" id="concerns" dir="{{ $isAr ? 'rtl' : 'ltr' }}" style="--section-bg: {{ $bgColor }}; --section-color: {{ $textColor }}; background-color: var(--section-bg); color: var(--section-color); border-color: var(--section-color);">
+<section class="border-b border-t border-[#2e2224]/15 overflow-hidden" id="concerns" dir="{{ $isAr ? 'rtl' : 'ltr' }}" style="--section-bg: {{ $bgColor }}; --section-color: {{ $textColor }}; background-color: var(--section-bg);">
     {{-- Header Banner --}}
-    <div class="py-4 px-6 border-b border-[var(--section-color,#2e2224)]/20 text-center" style="background-color: var(--section-bg); color: var(--section-color);">
-        <h2 class="font-mono text-xs font-bold tracking-widest uppercase" style="color: var(--section-color);">
+    <div class="nc-section-header py-4 px-6 border-b border-[#2e2224]/15 text-center" style="color: var(--section-color);">
+        <h2 class="nc-section-title font-mono text-xs font-bold tracking-widest uppercase" style="color: var(--section-color);">
             {{ $kicker }}
         </h2>
     </div>
@@ -102,21 +102,21 @@
                 </div>
 
                 {{-- Card Details --}}
-                <div class="p-6 flex flex-col items-center justify-between text-center flex-1 gap-4" style="background-color: var(--section-bg); color: var(--section-color);">
+                <div class="p-6 flex flex-col items-center justify-between text-center flex-1 gap-4 text-[#2e2224]" style="background-color: var(--section-bg);">
                     <div class="space-y-2">
-                        <h3 class="font-mono font-bold text-sm sm:text-base tracking-wide" style="color: var(--section-color);">
+                        <h3 class="font-mono font-bold text-sm sm:text-base tracking-wide text-[#2e2224]">
                             <a href="{{ $link }}" class="hover:underline">
                                 {{ $title }}
                             </a>
                         </h3>
-                        <p class="font-mono text-[11px] leading-relaxed opacity-85" style="color: var(--section-color); max-w-[220px] mx-auto">
+                        <p class="font-mono text-[11px] leading-relaxed opacity-85 text-[#2e2224] max-w-[220px] mx-auto">
                             {{ $copy }}
                         </p>
                     </div>
 
                     <a
                         href="{{ $link }}"
-                        class="inline-block bg-white text-[var(--section-color,#2e2224)] border border-[var(--section-color,#2e2224)] font-mono text-[11px] font-bold tracking-widest uppercase px-5 py-2 transition-all hover:bg-[var(--section-color,#2e2224)] hover:text-white"
+                        class="inline-block bg-white text-[#2e2224] border border-[#2e2224] font-mono text-[11px] font-bold tracking-widest uppercase px-5 py-2 transition-all hover:bg-[#2e2224] hover:text-white"
                     >
                         {{ $btnText }}
                     </a>

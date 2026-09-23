@@ -23,17 +23,19 @@
     $btnLink = data_get($options, 'btn_link') ?: '#shop';
 @endphp
 
-<section class="border-b border-[var(--section-color,#2e2224)] py-16 px-6 md:px-12" id="climate-defense" dir="{{ $isAr ? 'rtl' : 'ltr' }}" style="--section-bg: {{ $bgColor }}; --section-color: {{ $textColor }}; background-color: var(--section-bg); color: var(--section-color); border-color: var(--section-color);">
+<section class="border-b border-[#2e2224]/15 py-16 px-6 md:px-12" id="climate-defense" dir="{{ $isAr ? 'rtl' : 'ltr' }}" style="--section-bg: {{ $bgColor }}; --section-color: {{ $textColor }}; background-color: var(--section-bg);">
     <div class="max-w-7xl mx-auto">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-12">
             <div class="reveal">
-                <p class="font-mono text-xs font-bold tracking-widest uppercase mb-3 opacity-75">
-                    {{ $eyebrow }}
-                </p>
-                <h2 class="font-mono text-3xl md:text-5xl font-bold leading-tight mb-6">
-                    {!! nl2br(e($title)) !!}
-                </h2>
-                <div class="space-y-4 font-mono text-xs md:text-sm opacity-85 leading-relaxed">
+                <div class="nc-section-header" style="color: var(--section-color);">
+                    <p class="font-mono text-xs font-bold tracking-widest uppercase mb-3 opacity-75" style="color: var(--section-color);">
+                        {{ $eyebrow }}
+                    </p>
+                    <h2 class="nc-section-title font-mono text-3xl md:text-5xl font-bold leading-tight mb-6" style="color: var(--section-color);">
+                        {!! nl2br(e($title)) !!}
+                    </h2>
+                </div>
+                <div class="space-y-4 font-mono text-xs md:text-sm text-[#2e2224]/85 leading-relaxed">
                     <p>{{ $story1 }}</p>
                     <p>{{ $story2 }}</p>
                 </div>
@@ -47,17 +49,17 @@
                 @endif
             </div>
 
-            <div class="border border-[var(--section-color,#2e2224)] p-3 bg-white/40 shadow-sm">
-                <div class="aspect-[4/3] overflow-hidden border border-[var(--section-color,#2e2224)]">
+            <div class="border border-[#2e2224]/15 p-3 bg-white shadow-sm">
+                <div class="aspect-[4/3] overflow-hidden border border-[#2e2224]/15">
                     <img src="{{ $image }}" alt="{{ $title }}" class="w-full h-full object-cover" />
                 </div>
             </div>
         </div>
 
         @if (! empty($stats) && is_array($stats))
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-8 border-t border-[var(--section-color,#2e2224)]">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-8 border-t border-[#2e2224]/15">
                 @foreach ($stats as $stat)
-                    <div class="border border-[var(--section-color,#2e2224)] bg-white/70 p-5">
+                    <div class="border border-[#2e2224]/15 bg-white p-5 text-[#2e2224]">
                         <span class="font-mono text-2xl md:text-3xl font-bold block mb-1">
                             {{ $stat['figure'] ?? '' }}
                         </span>

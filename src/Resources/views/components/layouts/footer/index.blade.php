@@ -61,8 +61,8 @@
     ! $footerRecord
     || $footerSection
 )
-    <footer class="border-t border-[var(--section-color,#2e2224)] mt-24 {{ app()->getLocale() === 'ar' ? 'text-right' : 'text-left' }}" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}" style="--section-bg: {{ $bgColor }}; --section-color: {{ $textColor }}; background-color: var(--section-bg); color: var(--section-color); border-color: var(--section-color);">
-        <div class="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
+    <footer class="border-t border-[#2e2224]/15 mt-24 {{ app()->getLocale() === 'ar' ? 'text-right' : 'text-left' }}" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}" style="--section-bg: {{ $bgColor }}; --section-color: {{ $textColor }}; background-color: var(--section-bg);">
+        <div class="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 text-[#2e2224]">
             <div class="lg:col-span-2 flex flex-col gap-4">
                 @if ($channel->logo_url)
                     <a href="{{ route('shop.home.index') }}" class="inline-flex items-center w-max hover:opacity-85 transition-opacity">
@@ -89,7 +89,7 @@
             </div>
 
             <div class="flex flex-col gap-3">
-                <h4 class="font-mono text-xs font-bold tracking-widest uppercase">
+                <h4 class="font-mono text-xs font-bold tracking-widest uppercase" style="color: var(--section-color);">
                     {{ $col1Title }}
                 </h4>
                 @if (! empty($col1Links))
@@ -109,7 +109,7 @@
             </div>
 
             <div class="flex flex-col gap-3">
-                <h4 class="font-mono text-xs font-bold tracking-widest uppercase">
+                <h4 class="font-mono text-xs font-bold tracking-widest uppercase" style="color: var(--section-color);">
                     {{ $col2Title }}
                 </h4>
                 @if (! empty($col2Links))
@@ -129,7 +129,7 @@
             </div>
 
             <div class="flex flex-col gap-3">
-                <h4 class="font-mono text-xs font-bold tracking-widest uppercase">
+                <h4 class="font-mono text-xs font-bold tracking-widest uppercase" style="color: var(--section-color);">
                     {{ $col3Title }}
                 </h4>
                 @if (! empty($col3Links))

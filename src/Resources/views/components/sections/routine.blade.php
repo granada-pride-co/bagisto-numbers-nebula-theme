@@ -27,9 +27,9 @@
     $btnLink = data_get($options, 'btn_link') ?: '#shop';
 @endphp
 
-<section class="border-b border-[var(--section-color,#2e2224)]" id="routine" dir="{{ $isAr ? 'rtl' : 'ltr' }}" style="--section-bg: {{ $bgColor }}; --section-color: {{ $textColor }}; background-color: var(--section-bg); color: var(--section-color); border-color: var(--section-color);">
+<section class="border-b border-[#2e2224]/15" id="routine" dir="{{ $isAr ? 'rtl' : 'ltr' }}" style="--section-bg: {{ $bgColor }}; --section-color: {{ $textColor }}; background-color: var(--section-bg);">
     <div class="grid grid-cols-1 lg:grid-cols-2">
-        <div class="border-b lg:border-b-0 lg:border-e border-[var(--section-color,#2e2224)] overflow-hidden min-h-[450px]">
+        <div class="border-b lg:border-b-0 lg:border-e border-[#2e2224]/15 overflow-hidden min-h-[450px]">
             <img
                 src="{{ $image }}"
                 alt="{{ $title }}"
@@ -37,29 +37,31 @@
             />
         </div>
 
-        <div class="p-8 md:p-16 flex flex-col justify-center reveal {{ $isAr ? 'text-right' : 'text-left' }}" style="background-color: var(--section-bg); color: var(--section-color);">
-            <p class="font-mono text-xs font-bold tracking-widest uppercase mb-3 opacity-80">
-                {{ $eyebrow }}
-            </p>
-            <h2 class="font-mono text-3xl md:text-5xl font-bold leading-tight mb-4">
-                {!! nl2br(e($title)) !!}
-            </h2>
-            <p class="font-mono text-xs md:text-sm opacity-85 leading-relaxed mb-8 max-w-lg">
-                {{ $description }}
-            </p>
+        <div class="p-8 md:p-16 flex flex-col justify-center reveal {{ $isAr ? 'text-right' : 'text-left' }}">
+            <div class="nc-section-header mb-8 max-w-lg" style="color: var(--section-color);">
+                <p class="font-mono text-xs font-bold tracking-widest uppercase mb-3 opacity-80" style="color: var(--section-color);">
+                    {{ $eyebrow }}
+                </p>
+                <h2 class="nc-section-title font-mono text-3xl md:text-5xl font-bold leading-tight mb-4" style="color: var(--section-color);">
+                    {!! nl2br(e($title)) !!}
+                </h2>
+                <p class="font-mono text-xs md:text-sm opacity-85 leading-relaxed" style="color: var(--section-color);">
+                    {{ $description }}
+                </p>
+            </div>
 
-            <ol class="flex flex-col gap-5 mb-10">
+            <ol class="flex flex-col gap-5 mb-10 text-[#2e2224]">
                 @foreach ($steps as $step)
-                    <li class="flex items-start gap-4 pb-4 border-b border-[var(--section-color,#2e2224)]/20">
-                        <span class="font-mono text-xs font-bold shrink-0 pt-0.5 text-[var(--section-color,#2e2224)]">
+                    <li class="flex items-start gap-4 pb-4 border-b border-[#2e2224]/15">
+                        <span class="font-mono text-xs font-bold shrink-0 pt-0.5 text-[#2e2224]">
                             {{ $step['number'] ?? '' }}
                         </span>
                         <div>
-                            <h3 class="font-mono text-xs font-bold tracking-wider uppercase mb-1 text-[var(--section-color,#2e2224)]">
+                            <h3 class="font-mono text-xs font-bold tracking-wider uppercase mb-1 text-[#2e2224]">
                                 {{ $step['title'] ?? '' }}
                             </h3>
-                            <p class="font-mono text-[11px] opacity-80 leading-normal">
-                                {{ $step['copy'] ?? '' }}
+                            <p class="font-mono text-xs text-[#2e2224]/75 leading-relaxed">
+                                {{ $step['desc'] ?? '' }}
                             </p>
                         </div>
                     </li>

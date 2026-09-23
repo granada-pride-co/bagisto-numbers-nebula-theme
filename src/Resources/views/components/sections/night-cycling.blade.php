@@ -19,16 +19,16 @@
     $btnLink = data_get($options, 'btn_link') ?: '#shop';
 @endphp
 
-<section class="border-b border-[var(--section-color,rgba(255,255,255,0.2))] py-16 px-6 md:px-12" id="night-cycling" dir="{{ $isAr ? 'rtl' : 'ltr' }}" style="--section-bg: {{ $bgColor }}; --section-color: {{ $textColor }}; background-color: var(--section-bg); color: var(--section-color); border-color: var(--section-color);">
+<section class="border-b border-white/20 py-16 px-6 md:px-12" id="night-cycling" dir="{{ $isAr ? 'rtl' : 'ltr' }}" style="--section-bg: {{ $bgColor }}; --section-color: {{ $textColor }}; background-color: var(--section-bg);">
     <div class="max-w-7xl mx-auto">
-        <div class="text-center max-w-3xl mx-auto mb-12 reveal">
-            <p class="font-mono text-xs font-bold tracking-widest uppercase mb-3 opacity-60">
+        <div class="nc-section-header text-center max-w-3xl mx-auto mb-12 reveal" style="color: var(--section-color);">
+            <p class="font-mono text-xs font-bold tracking-widest uppercase mb-3 opacity-60" style="color: var(--section-color);">
                 {{ $eyebrow }}
             </p>
-            <h2 class="font-mono text-3xl md:text-5xl font-bold leading-tight mb-4">
+            <h2 class="nc-section-title font-mono text-3xl md:text-5xl font-bold leading-tight mb-4" style="color: var(--section-color);">
                 {!! nl2br(e($title)) !!}
             </h2>
-            <p class="font-mono text-xs md:text-sm leading-relaxed mb-6 opacity-80">
+            <p class="font-mono text-xs md:text-sm leading-relaxed mb-6 opacity-80" style="color: var(--section-color);">
                 {{ $subtitle }}
             </p>
 

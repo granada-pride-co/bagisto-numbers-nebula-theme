@@ -33,13 +33,13 @@
 @endphp
 
 <section
-    class="border-b border-[var(--section-color,#2e2224)] py-12 sm:py-16 px-4 sm:px-6 lg:px-8 transition-colors"
+    class="border-b border-[#2e2224]/15 py-12 sm:py-16 px-4 sm:px-6 lg:px-8 transition-colors"
     dir="{{ $isAr ? 'rtl' : 'ltr' }}"
-    style="--section-bg: {{ $bgColor }}; --section-color: {{ $textColor }}; background-color: var(--section-bg); color: var(--section-color); border-color: var(--section-color);"
+    style="--section-bg: {{ $bgColor }}; --section-color: {{ $textColor }}; background-color: var(--section-bg);"
     aria-label="{{ trans('nc::app.sections.service_strip.title') }}"
 >
     <div class="max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 divide-y sm:divide-y-0 lg:divide-x rtl:lg:divide-x-reverse divide-[var(--section-color,#2e2224)]/15">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 divide-y sm:divide-y-0 lg:divide-x rtl:lg:divide-x-reverse divide-[#2e2224]/15">
             @foreach ($items as $index => $item)
                 @php
                     $imageUrl = ! empty($item['image'])
@@ -91,7 +91,7 @@
                     @endif
 
                     <div class="flex flex-col items-center gap-1.5 max-w-[240px]">
-                        <h3 class="font-sans text-sm sm:text-base font-bold text-[var(--section-color,#2e2224)] tracking-normal transition-colors duration-200 group-hover:text-[#bd1765]">
+                        <h3 class="font-sans text-sm sm:text-base font-bold text-[#2e2224] tracking-normal transition-colors duration-200 group-hover:text-[#bd1765]">
                             {{ $item['title'] ?? '' }}
                         </h3>
 

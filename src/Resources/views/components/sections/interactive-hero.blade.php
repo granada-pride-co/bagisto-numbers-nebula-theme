@@ -31,17 +31,17 @@
 <section
     class="nc-interactive-hero relative overflow-hidden select-none"
     dir="{{ $isAr ? 'rtl' : 'ltr' }}"
-    style="--bg-paper: {{ $bgColor }}; --ink-main: {{ $textColor }}; --accent-magenta: {{ $accentColor }}; --disc-accent: {{ $discColor }}; background-color: var(--bg-paper); color: var(--ink-main);"
+    style="--bg-paper: {{ $bgColor }}; --ink-main: {{ $textColor }}; --accent-magenta: {{ $accentColor }}; --disc-accent: {{ $discColor }}; background-color: var(--bg-paper);"
     data-nc-interactive-hero
 >
     <div class="nc-hero-inner min-h-[92svh] lg:min-h-screen relative flex flex-col justify-center px-6 lg:px-16 py-20 z-10 {{ $isAr ? 'items-start text-right' : 'items-start text-left' }}">
         <div class="nc-hero-copy w-full lg:w-[54%] max-w-2xl z-20 flex flex-col justify-center relative {{ $isAr ? 'ms-0 me-auto text-right' : 'ms-0 me-auto text-left' }}">
             <div class="nc-hero-eyebrow flex items-center gap-3 text-xs uppercase {{ $isAr ? 'tracking-normal' : 'tracking-[0.2em]' }} font-medium mb-6">
                 <span class="w-2.5 h-2.5 rounded-full shrink-0" style="background-color: var(--accent-magenta);"></span>
-                <span>{{ $eyebrow }}</span>
+                <span style="color: var(--ink-main);">{{ $eyebrow }}</span>
             </div>
 
-            <h1 class="nc-hero-title font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl {{ $isAr ? 'leading-[1.25] sm:leading-[1.22] tracking-normal' : 'leading-[0.98] tracking-tight' }} mb-8 {{ $isAr ? 'text-right' : 'text-left' }}">
+            <h1 class="nc-hero-title font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl {{ $isAr ? 'leading-[1.25] sm:leading-[1.22] tracking-normal' : 'leading-[0.98] tracking-tight' }} mb-8 {{ $isAr ? 'text-right' : 'text-left' }}" style="color: var(--ink-main);">
                 <span class="block overflow-hidden {{ $isAr ? 'py-1' : '' }}"><span class="block transform nc-rise-1">{{ $title1 }}</span></span>
                 <span class="block overflow-hidden {{ $isAr ? 'py-1' : '' }}"><span class="block transform nc-rise-2">{{ $title2 }}</span></span>
                 <span class="block overflow-hidden {{ $isAr ? 'py-1' : '' }}">

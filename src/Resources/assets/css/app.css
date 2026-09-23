@@ -523,42 +523,43 @@ body {
 
 /* ========================================================
    Dynamic Section Theming & Scoping for Customizer Colors
+   Colors apply ONLY to section background & section headings
    ======================================================== */
-[style*="--section-color"] {
-  --line-solid: var(--section-color);
-  --line: color-mix(in srgb, var(--section-color) 18%, transparent);
+.nc-section-header,
+.nc-section-title,
+.nc-section-heading {
+  color: var(--section-color, inherit);
 }
 
-[style*="--section-color"] h1,
-[style*="--section-color"] h2,
-[style*="--section-color"] h3,
-[style*="--section-color"] h4,
-[style*="--section-color"] h5,
-[style*="--section-color"] h6 {
-  color: var(--section-color);
+/* Ensure internal cards, tabs, buttons, and content retain their intrinsic styling */
+.nc-cat-tab-btn,
+[role="tab"],
+[role="tablist"],
+article,
+.nc-card,
+.nc-product-card,
+[class*="product-card"],
+.nc-product-art,
+.nc-cat-tab-panels,
+[role="tabpanel"] {
+  color: #2e2224;
 }
 
-[style*="--section-color"] .text-\[\#2e2224\],
-[style*="--section-color"] .text-ink {
-  color: var(--section-color) !important;
+.nc-cat-tab-btn {
+  border-color: #2e2224 !important;
 }
 
-[style*="--section-color"] .border-\[\#2e2224\],
-[style*="--section-color"] .border-ink {
-  border-color: var(--section-color) !important;
+.nc-cat-tab-btn[aria-selected="true"],
+.nc-cat-tab-btn.bg-\[\#2e2224\] {
+  background-color: #2e2224 !important;
+  color: #ffffff !important;
 }
 
-[style*="--section-color"] [class*="text-[#2e2224]"] {
-  color: var(--section-color) !important;
+.nc-cat-tab-btn[aria-selected="false"],
+.nc-cat-tab-btn.bg-white\/80 {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  color: #2e2224 !important;
 }
 
-[style*="--section-color"] [class*="border-[#2e2224]"] {
-  border-color: color-mix(in srgb, var(--section-color) 25%, transparent) !important;
-}
-
-[style*="--section-color"] .bg-\[\#2e2224\] {
-  background-color: var(--section-color) !important;
-  color: var(--section-bg, #ffffff) !important;
-}
 
 

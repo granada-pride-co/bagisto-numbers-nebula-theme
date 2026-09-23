@@ -16,23 +16,23 @@
     $bundleBtnLink = data_get($options, 'bundle_btn_link') ?: '#shop';
 @endphp
 
-<section class="border-b border-[var(--section-color,#2e2224)] py-16 px-6 md:px-12" id="cleo-ritual" dir="{{ $isAr ? 'rtl' : 'ltr' }}" style="--section-bg: {{ $bgColor }}; --section-color: {{ $textColor }}; background-color: var(--section-bg); color: var(--section-color); border-color: var(--section-color);">
+<section class="border-b border-[#2e2224]/15 py-16 px-6 md:px-12" id="cleo-ritual" dir="{{ $isAr ? 'rtl' : 'ltr' }}" style="--section-bg: {{ $bgColor }}; --section-color: {{ $textColor }}; background-color: var(--section-bg);">
     <div class="max-w-7xl mx-auto">
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 border-b border-[var(--section-color,#2e2224)]/20 pb-8 reveal">
+        <div class="nc-section-header flex flex-col md:flex-row md:items-end justify-between mb-14 border-b border-[#2e2224]/15 pb-8 reveal" style="color: var(--section-color);">
             <div class="max-w-2xl">
-                <p class="font-mono text-xs font-bold tracking-widest uppercase mb-3 opacity-75">
+                <p class="font-mono text-xs font-bold tracking-widest uppercase mb-3 opacity-75" style="color: var(--section-color);">
                     {{ $eyebrow }}
                 </p>
-                <h2 class="font-mono text-3xl md:text-5xl font-bold leading-tight">
+                <h2 class="nc-section-title font-mono text-3xl md:text-5xl font-bold leading-tight" style="color: var(--section-color);">
                     {!! nl2br(e($title)) !!}
                 </h2>
-                <p class="font-mono text-xs md:text-sm mt-4 leading-relaxed opacity-80">
+                <p class="font-mono text-xs md:text-sm mt-4 leading-relaxed opacity-80" style="color: var(--section-color);">
                     {{ $subtitle }}
                 </p>
             </div>
             @if (! empty($bundleBadge))
                 <div class="mt-6 md:mt-0">
-                    <span class="inline-block font-mono text-xs font-bold uppercase tracking-wider px-4 py-2 border border-[var(--section-color,#2e2224)] bg-[var(--section-color,#2e2224)] text-[var(--section-bg,#ffffff)]">
+                    <span class="inline-block font-mono text-xs font-bold uppercase tracking-wider px-4 py-2 border border-[#2e2224] bg-[#2e2224] text-white">
                         {{ $bundleBadge }}
                     </span>
                 </div>
@@ -42,7 +42,7 @@
         @if (! empty($steps) && is_array($steps))
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
                 @foreach ($steps as $index => $step)
-                    <div class="border border-[var(--section-color,#2e2224)] bg-white/70 p-6 flex flex-col justify-between relative group hover:border-[#bd1765] transition-colors">
+                    <div class="border border-[#2e2224]/15 bg-white p-6 flex flex-col justify-between relative group hover:border-[#bd1765] transition-colors text-[#2e2224]">
                         <div>
                             <div class="flex items-center justify-between mb-4">
                                 <span class="font-mono text-2xl font-bold text-[var(--section-color,#2e2224)]">

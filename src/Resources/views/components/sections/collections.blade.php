@@ -20,10 +20,10 @@
     $textColor = data_get($options, 'text_color') ?: '#2e2224';
 @endphp
 
-<section class="border-b border-t border-[var(--section-color,#2e2224)] overflow-hidden" id="collections" dir="{{ $isAr ? 'rtl' : 'ltr' }}" style="--section-bg: {{ $bgColor }}; --section-color: {{ $textColor }}; background-color: var(--section-bg); color: var(--section-color); border-color: var(--section-color);">
+<section class="border-b border-t border-[#2e2224]/15 overflow-hidden" id="collections" dir="{{ $isAr ? 'rtl' : 'ltr' }}" style="--section-bg: {{ $bgColor }}; --section-color: {{ $textColor }}; background-color: var(--section-bg);">
     {{-- Header Banner --}}
-    <div class="py-4 px-6 border-b border-[var(--section-color,#2e2224)]/20 text-center" style="background-color: var(--section-bg); color: var(--section-color);">
-        <h2 class="font-mono text-xs font-bold tracking-widest uppercase" style="color: var(--section-color);">
+    <div class="nc-section-header py-4 px-6 border-b border-[#2e2224]/15 text-center" style="color: var(--section-color);">
+        <h2 class="nc-section-title font-mono text-xs font-bold tracking-widest uppercase" style="color: var(--section-color);">
             {{ $kicker }}
         </h2>
     </div>
@@ -82,7 +82,7 @@
                     @endif
                 </div>
 
-                <span class="font-mono text-xs font-bold tracking-wider uppercase mt-1" style="color: {{ $textColor }};">
+                <span class="font-mono text-xs font-bold tracking-wider uppercase mt-1 text-[#2e2224] group-hover:text-[#bd1765] transition-colors">
                     {{ $name }}
                 </span>
             </a>

@@ -105,17 +105,17 @@
     $uniqueSectionId = 'cat-tabs-' . uniqid();
 @endphp
 
-<section class="border-b border-[var(--section-color,#2e2224)] py-16 px-4 md:px-8" id="{{ $uniqueSectionId }}" dir="{{ $isAr ? 'rtl' : 'ltr' }}" style="--section-bg: {{ $bgColor }}; --section-color: {{ $textColor }}; background-color: var(--section-bg); color: var(--section-color); border-color: var(--section-color);">
+<section class="border-b border-[#2e2224]/15 py-16 px-4 md:px-8" id="{{ $uniqueSectionId }}" dir="{{ $isAr ? 'rtl' : 'ltr' }}" style="--section-bg: {{ $bgColor }}; --section-color: {{ $textColor }}; background-color: var(--section-bg);">
     <div class="max-w-7xl mx-auto">
         {{-- Section Header --}}
-        <div class="text-center max-w-3xl mx-auto mb-10 reveal">
+        <div class="nc-section-header text-center max-w-3xl mx-auto mb-10 reveal" style="color: var(--section-color);">
             <p class="font-mono text-xs font-bold tracking-widest text-[#bd1765] uppercase mb-2">
                 {{ $eyebrow }}
             </p>
-            <h2 class="font-mono text-2xl sm:text-3xl md:text-4xl font-bold leading-tight mb-3">
+            <h2 class="nc-section-title font-mono text-2xl sm:text-3xl md:text-4xl font-bold leading-tight mb-3" style="color: var(--section-color);">
                 {!! nl2br(e($title)) !!}
             </h2>
-            <p class="font-mono text-xs md:text-sm opacity-80 leading-relaxed">
+            <p class="font-mono text-xs md:text-sm opacity-80 leading-relaxed" style="color: var(--section-color);">
                 {{ $description }}
             </p>
         </div>

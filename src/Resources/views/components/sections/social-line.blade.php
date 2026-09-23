@@ -21,9 +21,9 @@
     $textColor = data_get($options, 'text_color') ?: '#2e2224';
 @endphp
 
-<section class="border-b border-[var(--section-color,#2e2224)] overflow-hidden" dir="{{ $isAr ? 'rtl' : 'ltr' }}" style="--section-bg: {{ $bgColor }}; --section-color: {{ $textColor }}; background-color: var(--section-bg); color: var(--section-color); border-color: var(--section-color);">
+<section class="border-b border-[#2e2224]/15 overflow-hidden" dir="{{ $isAr ? 'rtl' : 'ltr' }}" style="--section-bg: {{ $bgColor }}; --section-color: {{ $textColor }}; background-color: var(--section-bg);">
     {{-- Header Banner --}}
-    <div class="py-5 px-6 border-b border-[var(--section-color,#2e2224)]/20" style="background-color: var(--section-bg); color: var(--section-color);">
+    <div class="nc-section-header py-5 px-6 border-b border-[#2e2224]/15" style="color: var(--section-color);">
         <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 font-mono text-xs font-bold tracking-widest uppercase text-center" style="color: var(--section-color);">
             <span class="opacity-80">{{ $text }}</span>
             <a

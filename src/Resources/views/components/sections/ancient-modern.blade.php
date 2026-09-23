@@ -15,16 +15,16 @@
     $btnLink = data_get($options, 'btn_link') ?: '#shop';
 @endphp
 
-<section class="border-b border-[var(--section-color,#2e2224)] py-16 px-6 md:px-12" id="ancient-modern" dir="{{ $isAr ? 'rtl' : 'ltr' }}" style="--section-bg: {{ $bgColor }}; --section-color: {{ $textColor }}; background-color: var(--section-bg); color: var(--section-color); border-color: var(--section-color);">
+<section class="border-b border-[#2e2224]/15 py-16 px-6 md:px-12" id="ancient-modern" dir="{{ $isAr ? 'rtl' : 'ltr' }}" style="--section-bg: {{ $bgColor }}; --section-color: {{ $textColor }}; background-color: var(--section-bg);">
     <div class="max-w-7xl mx-auto">
-        <div class="text-center max-w-3xl mx-auto mb-14 reveal">
-            <p class="font-mono text-xs font-bold tracking-widest uppercase mb-3 opacity-75">
+        <div class="nc-section-header text-center max-w-3xl mx-auto mb-14 reveal" style="color: var(--section-color);">
+            <p class="font-mono text-xs font-bold tracking-widest uppercase mb-3 opacity-75" style="color: var(--section-color);">
                 {{ $eyebrow }}
             </p>
-            <h2 class="font-mono text-3xl md:text-5xl font-bold leading-tight mb-4">
+            <h2 class="nc-section-title font-mono text-3xl md:text-5xl font-bold leading-tight mb-4" style="color: var(--section-color);">
                 {!! nl2br(e($title)) !!}
             </h2>
-            <p class="font-mono text-xs md:text-sm leading-relaxed opacity-85">
+            <p class="font-mono text-xs md:text-sm leading-relaxed opacity-85" style="color: var(--section-color);">
                 {{ $description }}
             </p>
         </div>
@@ -32,10 +32,10 @@
         @if (! empty($cards) && is_array($cards))
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
                 @foreach ($cards as $card)
-                    <div class="border border-[var(--section-color,#2e2224)] bg-white/60 p-6 flex flex-col justify-between transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                    <div class="border border-[#2e2224]/15 bg-white p-6 flex flex-col justify-between text-[#2e2224] transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
                         <div>
                             @if (! empty($card['badge']))
-                                <span class="inline-block font-mono text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 border border-[var(--section-color,#2e2224)] bg-[var(--section-color,#2e2224)] text-[var(--section-bg,#ffffff)] mb-4">
+                                <span class="inline-block font-mono text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 border border-[#2e2224] bg-[#2e2224] text-white mb-4">
                                     {{ $card['badge'] }}
                                 </span>
                             @endif

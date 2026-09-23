@@ -24,7 +24,7 @@
     $textColor = data_get($options, 'text_color') ?: '#ffffff';
 @endphp
 
-<section class="nc-hero" id="top" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}" style="{{ $bgColor ? 'background-color: ' . $bgColor . ';' : '' }} color: {{ $textColor }};">
+<section class="nc-hero" id="top" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}" style="{{ $bgColor ? 'background-color: ' . $bgColor . ';' : '' }}">
     <div class="nc-hero__panel">
         <img src="{{ $skinImage }}" alt="{{ $headline }}" />
         <div class="nc-hero__shade"></div>

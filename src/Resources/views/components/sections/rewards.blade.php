@@ -17,10 +17,10 @@
     $linkUrl = data_get($options, 'link_url') ?: '#newsletter';
 @endphp
 
-<section class="border-b border-[#2e2224]" id="rewards" dir="{{ $isAr ? 'rtl' : 'ltr' }}" style="background-color: {{ $bgColor }}; color: {{ $textColor }};">
+<section class="border-b border-[#2e2224]/15" id="rewards" dir="{{ $isAr ? 'rtl' : 'ltr' }}" style="--section-bg: {{ $bgColor }}; --section-color: {{ $textColor }}; background-color: var(--section-bg);">
     <div class="grid grid-cols-1 lg:grid-cols-2">
         {{-- Promo Image (Left Column) --}}
-        <div class="border-b lg:border-b-0 lg:border-e border-[#2e2224] overflow-hidden min-h-[450px]">
+        <div class="border-b lg:border-b-0 lg:border-e border-[#2e2224]/15 overflow-hidden min-h-[450px]">
             <img
                 src="{{ $image }}"
                 alt="{{ $title }}"
@@ -29,20 +29,20 @@
         </div>
 
         {{-- Text Content Box (Right Column) --}}
-        <div class="p-8 md:p-16 flex flex-col justify-center reveal {{ $isAr ? 'text-right' : 'text-left' }}" style="background-color: {{ $bgColor }}; color: {{ $textColor }};">
-            <p class="font-mono text-xs font-bold tracking-widest uppercase mb-4 opacity-80" style="color: {{ $textColor }};">
+        <div class="p-8 md:p-16 flex flex-col justify-center reveal {{ $isAr ? 'text-right' : 'text-left' }}">
+            <p class="font-mono text-xs font-bold tracking-widest uppercase mb-4 opacity-80" style="color: var(--section-color);">
                 {{ $eyebrow }}
             </p>
-            <h2 class="font-mono text-3xl md:text-5xl font-bold leading-tight mb-6" style="color: {{ $textColor }};">
+            <h2 class="font-mono text-3xl md:text-5xl font-bold leading-tight mb-6" style="color: var(--section-color);">
                 {!! nl2br(e($title)) !!}
             </h2>
-            <p class="font-mono text-xs md:text-sm leading-relaxed max-w-md mb-8 opacity-85" style="color: {{ $textColor }};">
+            <p class="font-mono text-xs md:text-sm leading-relaxed max-w-md mb-8 text-[#2e2224]/85">
                 {{ $description }}
             </p>
             <div>
                 <a
                     href="{{ $linkUrl }}"
-                    class="inline-flex items-center gap-2 font-mono text-xs font-bold tracking-wider hover:underline uppercase" style="color: {{ $textColor }};"
+                    class="inline-flex items-center gap-2 font-mono text-xs font-bold tracking-wider hover:underline uppercase text-[#2e2224] hover:text-[#bd1765]"
                 >
                     {{ $linkText }}
                     <svg class="w-4 h-4 rtl:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

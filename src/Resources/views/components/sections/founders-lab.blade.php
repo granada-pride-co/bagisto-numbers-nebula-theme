@@ -16,22 +16,22 @@
     $btnLink = data_get($options, 'btn_link') ?: '#story';
 @endphp
 
-<section class="border-b border-[var(--section-color,#2e2224)] py-16 px-6 md:px-12" id="founders-lab" dir="{{ $isAr ? 'rtl' : 'ltr' }}" style="--section-bg: {{ $bgColor }}; --section-color: {{ $textColor }}; background-color: var(--section-bg); color: var(--section-color); border-color: var(--section-color);">
+<section class="border-b border-[#2e2224]/15 py-16 px-6 md:px-12" id="founders-lab" dir="{{ $isAr ? 'rtl' : 'ltr' }}" style="--section-bg: {{ $bgColor }}; --section-color: {{ $textColor }}; background-color: var(--section-bg);">
     <div class="max-w-7xl mx-auto">
-        <div class="max-w-3xl mb-12 reveal">
-            <p class="font-mono text-xs font-bold tracking-widest uppercase mb-3 opacity-75">
+        <div class="nc-section-header max-w-3xl mb-12 reveal" style="color: var(--section-color);">
+            <p class="font-mono text-xs font-bold tracking-widest uppercase mb-3 opacity-75" style="color: var(--section-color);">
                 {{ $eyebrow }}
             </p>
-            <h2 class="font-mono text-3xl md:text-5xl font-bold leading-tight mb-6">
+            <h2 class="nc-section-title font-mono text-3xl md:text-5xl font-bold leading-tight mb-6" style="color: var(--section-color);">
                 {!! nl2br(e($title)) !!}
             </h2>
-            <div class="border-s-4 border-[var(--section-color,#2e2224)] ps-6 py-2 mb-6 bg-white/50">
-                <p class="font-mono text-xs md:text-sm italic leading-relaxed text-[var(--section-color,#2e2224)]">
+            <div class="border-s-4 border-[#bd1765] ps-6 py-2 mb-6 bg-white/70">
+                <p class="font-mono text-xs md:text-sm italic leading-relaxed text-[#2e2224]">
                     {{ $quote }}
                 </p>
             </div>
             @if (! empty($badgeText))
-                <span class="inline-block font-mono text-xs font-bold uppercase tracking-wider px-3 py-1 border border-[var(--section-color,#2e2224)] bg-[var(--section-color,#2e2224)] text-[var(--section-bg,#ffffff)]">
+                <span class="inline-block font-mono text-xs font-bold uppercase tracking-wider px-3 py-1 border border-[#2e2224] bg-[#2e2224] text-white">
                     {{ $badgeText }}
                 </span>
             @endif
@@ -40,14 +40,14 @@
         @if (! empty($founders) && is_array($founders))
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
                 @foreach ($founders as $founder)
-                    <div class="border border-[var(--section-color,#2e2224)] bg-white/80 p-8 relative flex flex-col justify-between">
+                    <div class="border border-[#2e2224]/15 bg-white p-8 relative flex flex-col justify-between text-[#2e2224]">
                         <div>
                             <div class="flex items-center gap-3 mb-4">
-                                <div class="w-10 h-10 rounded-full border border-[var(--section-color,#2e2224)] bg-white flex items-center justify-center font-mono font-bold text-sm text-[var(--section-color,#2e2224)]">
+                                <div class="w-10 h-10 rounded-full border border-[#2e2224]/20 bg-[#fbf8f1] flex items-center justify-center font-mono font-bold text-sm text-[#2e2224]">
                                     {{ mb_substr($founder['name'] ?? 'Dr', 0, 2) }}
                                 </div>
                                 <div>
-                                    <h3 class="font-mono text-lg font-bold text-[var(--section-color,#2e2224)]">
+                                    <h3 class="font-mono text-lg font-bold text-[#2e2224]">
                                         {{ $founder['name'] ?? '' }}
                                     </h3>
                                     <p class="font-mono text-xs text-[#bd1765] font-semibold">
