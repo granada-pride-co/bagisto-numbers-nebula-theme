@@ -60,7 +60,7 @@
     </div>
 
     {{-- 5 Columns Grid --}}
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 divide-y sm:divide-y-0 lg:divide-x rtl:lg:divide-x-reverse divide-[var(--section-color,#2e2224)]/20" style="background-color: var(--section-bg);">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 divide-y sm:divide-y-0 lg:divide-x rtl:lg:divide-x-reverse divide-[#2e2224]/15">
         @foreach ($items as $index => $item)
             @php
                 $categoryId = data_get($item, 'category_id');
