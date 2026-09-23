@@ -55,7 +55,7 @@
                         </div>
 
                         @if (! empty($item['clean_promise']))
-                            <div class="pt-3 border-t border-[var(--section-color,#2e2224)]/20 flex items-center gap-1.5 text-[#1e5631]">
+                            <div class="pt-3 border-t border-[#2e2224]/15 flex items-center gap-1.5 text-[#1e5631]">
                                 <span class="text-xs">✓</span>
                                 <span class="font-mono text-[10px] uppercase tracking-wider font-semibold">
                                     {{ $item['clean_promise'] }}

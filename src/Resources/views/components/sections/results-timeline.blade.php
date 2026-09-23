@@ -35,11 +35,11 @@
                 @foreach ($milestones as $item)
                     <div class="border border-[#2e2224]/15 bg-white p-6 flex flex-col justify-between relative shadow-sm text-[#2e2224]">
                         <div>
-                            <div class="flex items-center justify-between mb-4 border-b border-[var(--section-color,#2e2224)]/20 pb-3">
+                            <div class="flex items-center justify-between mb-4 border-b border-[#2e2224]/15 pb-3">
                                 <span class="font-mono text-xl font-bold text-[#bd1765]">
                                     {{ $item['day'] ?? '' }}
                                 </span>
-                                <span class="font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 border border-[var(--section-color,#2e2224)]/30 bg-white/60">
+                                <span class="font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 border border-[#2e2224]/20 bg-white/60">
                                     {{ $item['phase'] ?? '' }}
                                 </span>
                             </div>
@@ -50,11 +50,11 @@
                         </div>
 
                         @if (! empty($item['recommended_ritual']))
-                            <div class="pt-3 border-t border-[var(--section-color,#2e2224)]/20 bg-[var(--section-color,#2e2224)]/5 -mx-6 -mb-6 p-4">
+                            <div class="pt-3 border-t border-[#2e2224]/15 bg-[#2e2224]/5 -mx-6 -mb-6 p-4">
                                 <span class="font-mono text-[10px] uppercase tracking-wider opacity-60 block mb-0.5">
                                     {{ $isAr ? 'الطقس الموصى به:' : 'Ritual Focus:' }}
                                 </span>
-                                <span class="font-mono text-xs font-bold text-[var(--section-color,#2e2224)]">
+                                <span class="font-mono text-xs font-bold text-[#2e2224]">
                                     {{ $item['recommended_ritual'] }}
                                 </span>
                             </div>
@@ -65,8 +65,8 @@
         @endif
 
         @if (! empty($doctorNote))
-            <div class="border border-[var(--section-color,#2e2224)] p-5 text-center bg-white/70 max-w-2xl mx-auto">
-                <p class="font-mono text-xs italic text-[var(--section-color,#2e2224)]">
+            <div class="border border-[#2e2224]/15 p-5 text-center bg-white/70 max-w-2xl mx-auto">
+                <p class="font-mono text-xs italic text-[#2e2224]">
                     {{ $doctorNote }}
                 </p>
             </div>

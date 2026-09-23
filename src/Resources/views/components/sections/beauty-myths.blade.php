@@ -65,8 +65,8 @@
         @endif
 
         @if (! empty($footerNote))
-            <div class="border border-[var(--section-color,#2e2224)] p-6 text-center bg-white/60 max-w-3xl mx-auto">
-                <p class="font-mono text-xs md:text-sm font-semibold italic text-[var(--section-color,#2e2224)]">
+            <div class="border border-[#2e2224]/15 p-6 text-center bg-white/60 max-w-3xl mx-auto">
+                <p class="font-mono text-xs md:text-sm font-semibold italic text-[#2e2224]">
                     {{ $footerNote }}
                 </p>
             </div>

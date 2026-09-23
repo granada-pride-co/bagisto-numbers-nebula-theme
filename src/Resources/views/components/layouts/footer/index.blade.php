@@ -156,7 +156,7 @@
             </div>
         </div>
 
-        <div class="border-t border-[var(--section-color,#2e2224)]/20 py-6 px-6 max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 font-mono text-[11px] tracking-wider opacity-70">
+        <div class="border-t border-[#2e2224]/15 py-6 px-6 max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 font-mono text-[11px] tracking-wider opacity-70">
             <div>{{ $location }}</div>
             <div>{{ $socialLinks }}</div>
             <div>{{ $copyright }}</div>

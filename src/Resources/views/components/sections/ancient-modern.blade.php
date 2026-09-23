@@ -40,11 +40,11 @@
                                 </span>
                             @endif
 
-                            <div class="mb-4 pb-4 border-b border-[var(--section-color,#2e2224)]/20">
+                            <div class="mb-4 pb-4 border-b border-[#2e2224]/15">
                                 <span class="font-mono text-[10px] uppercase tracking-wider opacity-60 block mb-1">
                                     {{ $isAr ? 'الأصل التاريخي' : 'Ancient Source' }}
                                 </span>
-                                <h3 class="font-mono text-base font-bold text-[var(--section-color,#2e2224)]">
+                                <h3 class="font-mono text-base font-bold text-[#2e2224]">
                                     {{ $card['ancient_name'] ?? '' }}
                                 </h3>
                                 @if (! empty($card['ancient_origin']))
@@ -61,7 +61,7 @@
                                 <span class="font-mono text-[10px] uppercase tracking-wider opacity-60 block mb-1">
                                     {{ $isAr ? 'البديل الصيدلاني اليوم' : 'Modern Pharmaceutical Equivalent' }}
                                 </span>
-                                <h4 class="font-mono text-sm font-bold text-[var(--section-color,#2e2224)]">
+                                <h4 class="font-mono text-sm font-bold text-[#2e2224]">
                                     {{ $card['modern_active'] ?? '' }}
                                 </h4>
                                 <p class="font-mono text-xs opacity-80 mt-1 leading-relaxed">

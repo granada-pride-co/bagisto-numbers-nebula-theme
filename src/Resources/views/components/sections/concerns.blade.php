@@ -90,9 +90,9 @@
                     $img = $default['image'];
                 }
             @endphp
-            <article class="flex flex-col justify-between bg-[#f7b7ba] group">
+            <article class="flex flex-col justify-between group">
                 {{-- Card Image --}}
-                <div class="aspect-square overflow-hidden border-b border-[#2e2224] bg-[#ebd8c8]">
+                <div class="aspect-square overflow-hidden border-b border-[#2e2224]/15 bg-[#ebd8c8]">
                     <img
                         src="{{ $img }}"
                         alt="{{ $title }}"
@@ -102,7 +102,7 @@
                 </div>
 
                 {{-- Card Details --}}
-                <div class="p-6 flex flex-col items-center justify-between text-center flex-1 gap-4 text-[#2e2224]" style="background-color: var(--section-bg);">
+                <div class="p-6 flex flex-col items-center justify-between text-center flex-1 gap-4 text-[#2e2224]">
                     <div class="space-y-2">
                         <h3 class="font-mono font-bold text-sm sm:text-base tracking-wide text-[#2e2224]">
                             <a href="{{ $link }}" class="hover:underline">

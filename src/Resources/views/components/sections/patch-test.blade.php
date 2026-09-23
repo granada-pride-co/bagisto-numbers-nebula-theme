@@ -51,12 +51,12 @@
             </div>
         @endif
 
-        <div class="border border-[var(--section-color,#2e2224)] bg-white/70 p-8 max-w-4xl mx-auto flex flex-col md:flex-row gap-6 items-start justify-between">
+        <div class="border border-[#2e2224]/15 bg-white/70 p-8 max-w-4xl mx-auto flex flex-col md:flex-row gap-6 items-start justify-between">
             <div class="max-w-xl">
-                <span class="font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 border border-[var(--section-color,#2e2224)] bg-white inline-block mb-2">
+                <span class="font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 border border-[#2e2224] bg-white inline-block mb-2">
                     {{ $isAr ? 'رعاية الأم والطفل' : 'Maternal Care' }}
                 </span>
-                <h4 class="font-mono text-base font-bold text-[var(--section-color,#2e2224)] mb-2">
+                <h4 class="font-mono text-base font-bold text-[#2e2224] mb-2">
                     {{ $pregnancyTitle }}
                 </h4>
                 <p class="font-mono text-xs opacity-85 leading-relaxed">

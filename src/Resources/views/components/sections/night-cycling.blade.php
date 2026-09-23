@@ -45,14 +45,14 @@
         @if (! empty($scheduleItems) && is_array($scheduleItems))
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
                 @foreach ($scheduleItems as $item)
-                    <div class="border border-[var(--section-color,rgba(255,255,255,0.2))]/20 bg-[var(--section-color,rgba(255,255,255,0.1))]/5 p-6 backdrop-blur-sm flex flex-col justify-between hover:border-[var(--section-color,rgba(255,255,255,0.5))] transition-colors">
+                    <div class="border border-white/20 bg-white/5 p-6 backdrop-blur-sm flex flex-col justify-between hover:border-white/40 transition-colors">
                         <div>
-                            <div class="flex items-center justify-between mb-4 border-b border-[var(--section-color,rgba(255,255,255,0.2))]/10 pb-3">
+                            <div class="flex items-center justify-between mb-4 border-b border-white/10 pb-3">
                                 <span class="font-mono text-xs font-bold tracking-wider uppercase opacity-60">
                                     {{ $item['days'] ?? '' }}
                                 </span>
                                 @if (! empty($item['action_type']))
-                                    <span class="font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 border border-[var(--section-color,#ffffff)]/20 bg-[var(--section-color,#ffffff)]/10 text-current">
+                                    <span class="font-mono text-[10px] uppercase tracking-wider px-2 py-0.5 border border-white/20 bg-white/10 text-white">
                                         {{ $item['action_type'] }}
                                     </span>
                                 @endif
@@ -76,7 +76,7 @@
 
         @if (! empty($btnText))
             <div class="text-center">
-                <a href="{{ $btnLink }}" class="nc-btn inline-block font-mono text-xs font-bold tracking-wider uppercase py-3 px-8 border" style="background-color: var(--section-color); color: var(--section-bg); border-color: var(--section-color);">
+                <a href="{{ $btnLink }}" class="nc-btn nc-btn--light inline-block">
                     {{ $btnText }}
                 </a>
             </div>

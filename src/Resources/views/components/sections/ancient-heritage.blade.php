@@ -52,7 +52,7 @@
                         </div>
 
                         @if (! empty($story['modern_takeaway']))
-                            <div class="pt-3 border-t border-[var(--section-color,#2e2224)]/20 bg-[var(--section-color,#2e2224)]/5 -mx-6 -mb-6 p-4">
+                            <div class="pt-3 border-t border-[#2e2224]/15 bg-[#2e2224]/5 -mx-6 -mb-6 p-4">
                                 <span class="font-mono text-[10px] uppercase tracking-wider text-[#bd1765] font-bold block mb-0.5">
                                     {{ $isAr ? 'في مختبرنا اليوم:' : 'In Our Lab Today:' }}
                                 </span>
@@ -67,10 +67,10 @@
         @endif
 
         @if (! empty($communityTitle))
-            <div class="border border-[var(--section-color,#2e2224)] bg-white/70 p-8 max-w-4xl mx-auto shadow-sm">
+            <div class="border border-[#2e2224]/15 bg-white/70 p-8 max-w-4xl mx-auto shadow-sm">
                 <div class="flex items-center gap-3 mb-3">
                     <span class="text-2xl">🏛️</span>
-                    <h4 class="font-mono text-lg font-bold text-[var(--section-color,#2e2224)]">
+                    <h4 class="font-mono text-lg font-bold text-[#2e2224]">
                         {{ $communityTitle }}
                     </h4>
                 </div>
