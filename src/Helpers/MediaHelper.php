@@ -32,7 +32,23 @@ class MediaHelper
             return asset($path);
         }
 
-        return Storage::url($path);
+        $cleanPath = ltrim($path, '/');
+
+        if (file_exists(public_path('themes/shop/nebula-cosmetics/'.$cleanPath))) {
+            return asset('themes/shop/nebula-cosmetics/'.$cleanPath);
+        }
+
+        $baseName = basename($path);
+
+        if (file_exists(public_path('themes/shop/nebula-cosmetics/images/'.$baseName))) {
+            return asset('themes/shop/nebula-cosmetics/images/'.$baseName);
+        }
+
+        if (Storage::disk('public')->exists($cleanPath)) {
+            return Storage::url($cleanPath);
+        }
+
+        return $fallback ?: Storage::url($path);
     }
 
     /**

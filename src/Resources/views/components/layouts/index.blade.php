@@ -95,6 +95,7 @@
             };
         </script>
 
+        @bagistoVite(['src/Resources/assets/js/app.js'], 'shop')
         @bagistoVite(['src/Resources/assets/css/app.css', 'src/Resources/assets/js/app.js'])
 
         @stack('styles')
@@ -173,7 +174,9 @@
         {!! view_render_event('bagisto.shop.layout.vue-app-mount.before') !!}
         <script>
             function mountApp() {
-                app.mount("#app");
+                if (window.app && typeof window.app.mount === "function") {
+                    window.app.mount("#app");
+                }
             }
 
             if (document.readyState === "loading") {
