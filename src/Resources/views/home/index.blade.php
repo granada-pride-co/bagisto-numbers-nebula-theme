@@ -16,7 +16,7 @@
     @if (! empty($sections) && $sections->count())
         @foreach ($sections as $section)
             @php
-                $data = (array) ($section->translate(app()->getLocale())?->options ?? $section->options);
+                $data = (array) $section->options;
                 $marks = ($preview ?? false) && ! $section->getTypeInstance()?->rendersInLayout();
             @endphp
 

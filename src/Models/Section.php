@@ -4,8 +4,10 @@ namespace NumbersNebula\NebulaCosmetics\Models;
 
 use Webkul\Theme\Contracts\Section as SectionContract;
 use Webkul\Theme\Models\Section as BaseSection;
-use Webkul\Theme\SectionSchema;
+use Webkul\Theme\Models\SectionTranslation;
+use Webkul\Theme\Repositories\SectionRepository;
 use Webkul\Theme\Sections\SectionType;
+use Webkul\Theme\SectionSchema;
 
 class Section extends BaseSection implements SectionContract
 {
@@ -14,7 +16,7 @@ class Section extends BaseSection implements SectionContract
      *
      * @var string
      */
-    protected $translationModel = \Webkul\Theme\Models\SectionTranslation::class;
+    protected $translationModel = SectionTranslation::class;
 
     /**
      * Map of legacy hardcoded section names to their translation keys.
@@ -75,6 +77,29 @@ class Section extends BaseSection implements SectionContract
         }
 
         return trans()->has($value) ? trans($value) : $value;
+    }
+
+    /**
+     * Get the active options, preferring draft options when previewing.
+     */
+    public function getOptionsAttribute(): array
+    {
+        $locale = app()->getLocale();
+        $translation = $this->translate($locale) ?? $this->getTranslation();
+
+        if (
+            $translation
+            && app(SectionRepository::class)->isPreviewing()
+            && ! is_null($translation->draft_options)
+        ) {
+            return $this->getTypeInstance()?->sanitize($translation->draft_options) ?? $translation->draft_options;
+        }
+
+        if ($translation && ! is_null($translation->options)) {
+            return (array) $translation->options;
+        }
+
+        return (array) ($this->attributes['options'] ?? []);
     }
 
     /**
