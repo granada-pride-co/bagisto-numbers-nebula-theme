@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use NumbersNebula\NebulaCosmetics\Database\Seeders\NebulaCosmeticsSectionsSeeder;
+use Webkul\Theme\Contracts\Section;
+use Webkul\Theme\SectionSchema;
 
 class NebulaCosmeticsServiceProvider extends ServiceProvider
 {
@@ -20,7 +22,7 @@ class NebulaCosmeticsServiceProvider extends ServiceProvider
         );
 
         $this->app->singleton(
-            \Webkul\Theme\SectionSchema::class,
+            SectionSchema::class,
             \NumbersNebula\NebulaCosmetics\Sections\SectionSchema::class
         );
     }
@@ -31,7 +33,7 @@ class NebulaCosmeticsServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->app->concord->registerModel(
-            \Webkul\Theme\Contracts\Section::class,
+            Section::class,
             \NumbersNebula\NebulaCosmetics\Models\Section::class
         );
 

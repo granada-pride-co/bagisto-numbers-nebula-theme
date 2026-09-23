@@ -4,7 +4,6 @@ namespace NumbersNebula\NebulaCosmetics\Sections;
 
 use Webkul\Product\Repositories\ProductRepository;
 use Webkul\Theme\Sections\SectionType;
-use NumbersNebula\NebulaCosmetics\Sections\SectionSchema;
 
 class FeaturedProductsSection extends SectionType
 {

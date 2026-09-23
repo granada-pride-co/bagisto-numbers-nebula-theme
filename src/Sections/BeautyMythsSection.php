@@ -3,7 +3,6 @@
 namespace NumbersNebula\NebulaCosmetics\Sections;
 
 use Webkul\Theme\Sections\SectionType;
-use NumbersNebula\NebulaCosmetics\Sections\SectionSchema;
 
 class BeautyMythsSection extends SectionType
 {

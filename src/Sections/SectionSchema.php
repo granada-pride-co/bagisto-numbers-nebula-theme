@@ -3,8 +3,8 @@
 namespace NumbersNebula\NebulaCosmetics\Sections;
 
 use Webkul\Theme\Enums\SectionTypeEnum;
-use Webkul\Theme\SectionSchema as BaseSectionSchema;
 use Webkul\Theme\Sections\SectionType;
+use Webkul\Theme\SectionSchema as BaseSectionSchema;
 
 class SectionSchema extends BaseSectionSchema
 {
