@@ -12,19 +12,19 @@
 @endphp
 
 <section
-    class="border-b border-[#2e2224] py-20 px-6 text-center transition-colors duration-300"
+    class="border-b border-[#2e2224]/15 py-20 px-6 text-center transition-colors duration-300"
     dir="{{ $isAr ? 'rtl' : 'ltr' }}"
-    style="background-color: {{ $bgColor }}; color: {{ $textColor }};"
+    style="--section-bg: {{ $bgColor }}; --section-color: {{ $textColor }}; background-color: var(--section-bg);"
     id="newsletter"
 >
     <div class="max-w-xl mx-auto flex flex-col items-center gap-4 reveal">
-        <p class="font-mono text-xs font-bold tracking-widest uppercase opacity-90">
+        <p class="font-mono text-xs font-bold tracking-widest uppercase opacity-90" style="color: var(--section-color);">
             {{ $eyebrow }}
         </p>
-        <h2 class="font-serif text-3xl md:text-5xl font-bold tracking-tight">
+        <h2 class="font-serif text-3xl md:text-5xl font-bold tracking-tight" style="color: var(--section-color);">
             {{ $title }}
         </h2>
-        <p class="text-sm opacity-90 max-w-md mb-4 leading-relaxed">
+        <p class="text-sm opacity-90 max-w-md mb-4 leading-relaxed text-[#2e2224]">
             {{ $description }}
         </p>
 
