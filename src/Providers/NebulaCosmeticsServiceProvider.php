@@ -62,5 +62,9 @@ class NebulaCosmeticsServiceProvider extends ServiceProvider
                 app(NebulaCosmeticsSectionsSeeder::class)->seedForChannel($channel);
             }
         });
+
+        Event::listen('bagisto.admin.appearance.sections.index.after', function ($viewRenderEventManager) {
+            $viewRenderEventManager->addTemplate('nc::admin.appearance.color-fields');
+        });
     }
 }
