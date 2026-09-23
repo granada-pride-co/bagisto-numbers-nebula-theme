@@ -38,9 +38,9 @@ export default {
         },
       },
       fontFamily: {
-        serif: ["Cormorant Garamond", "Amiri", "El Messiri", "Georgia", "serif"],
-        sans: ["DM Sans", "IBM Plex Sans Arabic", "Tajawal", "system-ui", "sans-serif"],
-        mono: ["Courier Prime", "Courier New", "monospace"],
+        serif: ["var(--font-serif)", "Cormorant Garamond", "Amiri", "El Messiri", "Georgia", "serif"],
+        sans: ["var(--font-sans)", "DM Sans", "IBM Plex Sans Arabic", "Tajawal", "system-ui", "sans-serif"],
+        mono: ["var(--font-mono)", "Courier Prime", "Courier New", "monospace"],
       },
       boxShadow: {
         luxury: "0 10px 30px -5px rgba(46, 34, 36, 0.08)",

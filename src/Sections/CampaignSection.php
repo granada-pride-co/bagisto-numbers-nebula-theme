@@ -3,7 +3,7 @@
 namespace NumbersNebula\NebulaCosmetics\Sections;
 
 use Webkul\Theme\Sections\SectionType;
-use Webkul\Theme\SectionSchema;
+use NumbersNebula\NebulaCosmetics\Sections\SectionSchema;
 
 class CampaignSection extends SectionType
 {
@@ -28,6 +28,34 @@ class CampaignSection extends SectionType
     public function getFields(): array
     {
         return [
+            [
+                'key' => 'bg_color',
+                'type' => SectionSchema::COLOR,
+                'label' => trans('nc::app.sections.common.bg_color'),
+            ],
+            [
+                'key' => 'text_color',
+                'type' => SectionSchema::COLOR,
+                'label' => trans('nc::app.sections.common.text_color'),
+            ],
+            [
+                'key' => 'product_id',
+                'type' => SectionSchema::SELECT,
+                'label' => trans('nc::app.sections.campaign.select_product'),
+                'options' => array_merge(
+                    [['id' => '', 'value' => '', 'label' => trans('nc::app.sections.campaign.custom_or_none')]],
+                    $this->productOptions()
+                ),
+            ],
+            [
+                'key' => 'category_id',
+                'type' => SectionSchema::SELECT,
+                'label' => trans('nc::app.sections.campaign.select_category'),
+                'options' => array_merge(
+                    [['id' => '', 'value' => '', 'label' => trans('nc::app.sections.campaign.custom_or_none')]],
+                    $this->categoryOptions()
+                ),
+            ],
             [
                 'key' => 'bg_image',
                 'type' => SectionSchema::IMAGE,

@@ -3,7 +3,7 @@
 namespace NumbersNebula\NebulaCosmetics\Sections;
 
 use Webkul\Theme\Sections\SectionType;
-use Webkul\Theme\SectionSchema;
+use NumbersNebula\NebulaCosmetics\Sections\SectionSchema;
 
 class NewsletterSection extends SectionType
 {
@@ -50,12 +50,12 @@ class NewsletterSection extends SectionType
             ],
             [
                 'key' => 'bg_color',
-                'type' => SectionSchema::TEXT,
+                'type' => SectionSchema::COLOR,
                 'label' => trans('nc::app.sections.newsletter.bg_color'),
             ],
             [
                 'key' => 'text_color',
-                'type' => SectionSchema::TEXT,
+                'type' => SectionSchema::COLOR,
                 'label' => trans('nc::app.sections.newsletter.text_color'),
             ],
             [

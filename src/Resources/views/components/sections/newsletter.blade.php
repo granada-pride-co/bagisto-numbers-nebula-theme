@@ -2,17 +2,18 @@
 
 @php
     $isAr = app()->getLocale() === 'ar';
-    $eyebrow = data_get($options, 'eyebrow') ?: ($isAr ? 'انضمي إلى مجتمعنا' : "LET'S MAKE THIS OFFICIAL");
-    $title = data_get($options, 'title') ?: ($isAr ? 'احصلي على خصم 15%.' : 'Take 15% off.');
-    $description = data_get($options, 'description') ?: ($isAr ? 'تركيبات جديدة، نصائح للبشرة، ووصول حصري قبل الجميع. محتوى قيّم وهادئ.' : 'New formulas, useful skin notes and first access. Nothing noisy.');
-    $placeholder = data_get($options, 'placeholder') ?: ($isAr ? 'البريد الإلكتروني' : 'EMAIL ADDRESS');
-    $btnText = data_get($options, 'btn_text') ?: ($isAr ? 'سجليني الآن' : 'SIGN ME UP');
+    $eyebrow = data_get($options, 'eyebrow') ?: trans('nc::app.sections.newsletter.default_eyebrow');
+    $title = data_get($options, 'title') ?: trans('nc::app.sections.newsletter.default_title');
+    $description = data_get($options, 'description') ?: trans('nc::app.sections.newsletter.default_description');
+    $placeholder = data_get($options, 'placeholder') ?: trans('nc::app.sections.newsletter.default_placeholder');
+    $btnText = data_get($options, 'btn_text') ?: trans('nc::app.sections.newsletter.default_btn_text');
     $bgColor = data_get($options, 'bg_color') ?: '#f089a8';
     $textColor = data_get($options, 'text_color') ?: '#2e2224';
 @endphp
 
 <section
     class="border-b border-[#2e2224] py-20 px-6 text-center transition-colors duration-300"
+    dir="{{ $isAr ? 'rtl' : 'ltr' }}"
     style="background-color: {{ $bgColor }}; color: {{ $textColor }};"
     id="newsletter"
 >
@@ -31,7 +32,7 @@
             action="{{ route('shop.subscription.store') }}"
             method="POST"
             class="w-full flex flex-col sm:flex-row gap-3"
-            onsubmit="if(window.showToast){ window.showToast('{{ $isAr ? 'تم تسجيل بريدكِ بنجاح!' : 'You are on the list! Check your inbox.' }}'); }"
+            onsubmit="if(window.showToast){ window.showToast('{{ trans('nc::app.sections.newsletter.toast_success') }}'); }"
         >
             @csrf
             <label for="newsletter-email" class="sr-only">{{ $placeholder }}</label>

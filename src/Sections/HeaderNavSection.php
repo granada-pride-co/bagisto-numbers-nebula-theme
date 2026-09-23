@@ -3,7 +3,7 @@
 namespace NumbersNebula\NebulaCosmetics\Sections;
 
 use Webkul\Theme\Sections\SectionType;
-use Webkul\Theme\SectionSchema;
+use NumbersNebula\NebulaCosmetics\Sections\SectionSchema;
 
 class HeaderNavSection extends SectionType
 {
@@ -39,6 +39,16 @@ class HeaderNavSection extends SectionType
     {
         return [
             [
+                'key' => 'bg_color',
+                'type' => SectionSchema::COLOR,
+                'label' => trans('nc::app.sections.common.bg_color'),
+            ],
+            [
+                'key' => 'text_color',
+                'type' => SectionSchema::COLOR,
+                'label' => trans('nc::app.sections.common.text_color'),
+            ],
+            [
                 'key' => 'brand_title',
                 'type' => SectionSchema::TEXT,
                 'label' => trans('nc::app.sections.header_nav.brand_title'),
@@ -49,34 +59,8 @@ class HeaderNavSection extends SectionType
                 'label' => trans('nc::app.sections.header_nav.brand_subtitle'),
             ],
             [
-                'key' => 'font_arabic',
-                'type' => SectionSchema::SELECT,
-                'label' => trans('nc::app.sections.header_nav.font_arabic'),
-                'options' => [
-                    ['value' => 'Alexandria', 'label' => 'Alexandria (الإسكندرية - فاخر وعصري)'],
-                    ['value' => 'Tajawal', 'label' => 'Tajawal (تجوال - ناعم ومقروء)'],
-                    ['value' => 'Cairo', 'label' => 'Cairo (القاهرة - هندسي حديث)'],
-                    ['value' => 'IBM Plex Sans Arabic', 'label' => 'IBM Plex Sans Arabic (تقني وأنيق)'],
-                    ['value' => 'Readex Pro', 'label' => 'Readex Pro (ريديكس برو)'],
-                    ['value' => 'El Messiri', 'label' => 'El Messiri (المسيري - جمالي فاخر)'],
-                    ['value' => 'Amiri', 'label' => 'Amiri (أميري - كلاسيكي شرقي)'],
-                ],
-            ],
-            [
-                'key' => 'font_english',
-                'type' => SectionSchema::SELECT,
-                'label' => trans('nc::app.sections.header_nav.font_english'),
-                'options' => [
-                    ['value' => 'Cormorant Garamond', 'label' => 'Cormorant Garamond (Editorial Serif - فاخر)'],
-                    ['value' => 'DM Sans', 'label' => 'DM Sans (Clean Sans - حديث وأنيق)'],
-                    ['value' => 'Plus Jakarta Sans', 'label' => 'Plus Jakarta Sans (عصري)'],
-                    ['value' => 'Playfair Display', 'label' => 'Playfair Display (سيريف بارز)'],
-                    ['value' => 'Inter', 'label' => 'Inter (عملي وبسيط)'],
-                ],
-            ],
-            [
                 'key' => 'primary_color',
-                'type' => SectionSchema::TEXT,
+                'type' => SectionSchema::COLOR,
                 'label' => trans('nc::app.sections.header_nav.primary_color'),
             ],
             [

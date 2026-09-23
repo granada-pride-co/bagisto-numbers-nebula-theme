@@ -1,6 +1,7 @@
 @props([
     'title'      => null,
     'hasHeader'  => true,
+    'hasFeature' => true,
     'hasFooter'  => true,
 ])
 
@@ -43,30 +44,91 @@
             href="{{ core()->getCurrentChannel()->favicon_url ?? asset('themes/shop/nebula-cosmetics/images/preview.png') }}"
         />
 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800&family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Courier+Prime:wght@400;700&family=DM+Sans:wght@400;500;700&family=El+Messiri:wght@400;600;700&family=IBM+Plex+Sans+Arabic:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Readex+Pro:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-
         @php
-            $selectedArFont = data_get($headerNavSection?->options, 'font_arabic') ?: 'Courier Prime';
-            $selectedEnFont = data_get($headerNavSection?->options, 'font_english') ?: 'Courier Prime';
-            $primaryColor = data_get($headerNavSection?->options, 'primary_color') ?: '#bd1765';
+            $customAr = core()->getConfigData('general.design.nebula_theme.custom_font_arabic');
+            $adminThemeFont = core()->getConfigData('nebula_theme.settings.appearance.font_family');
+            $adminThemeFontMap = [
+                'ibm_plex' => 'IBM Plex Sans Arabic',
+                'tajawal'  => 'Tajawal',
+                'cairo'    => 'Cairo',
+                'system'   => 'Inter',
+            ];
+            $adminFallback = $adminThemeFontMap[$adminThemeFont] ?? null;
+
+            $selectedArFont = ! empty($customAr)
+                ? $customAr
+                : (core()->getConfigData('general.design.nebula_theme.font_arabic')
+                    ?: $adminFallback
+                    ?: data_get($headerNavSection?->options, 'font_arabic')
+                    ?: 'Tajawal');
+
+            $customEn = core()->getConfigData('general.design.nebula_theme.custom_font_english');
+            $selectedEnFont = ! empty($customEn)
+                ? $customEn
+                : (core()->getConfigData('general.design.nebula_theme.font_english')
+                    ?: data_get($headerNavSection?->options, 'font_english')
+                    ?: 'Cormorant Garamond');
+
+            $primaryColor = core()->getConfigData('general.design.nebula_theme.primary_color')
+                ?: data_get($headerNavSection?->options, 'primary_color')
+                ?: '#bd1765';
+
+            $secondaryColor = core()->getConfigData('general.design.nebula_theme.secondary_color')
+                ?: data_get($headerNavSection?->options, 'secondary_color')
+                ?: '#91e4d9';
+
+            $googleFontsUrl = \NumbersNebula\NebulaCosmetics\Helpers\FontHelper::getGoogleFontsUrl([
+                $selectedArFont,
+                $selectedEnFont,
+            ]);
         @endphp
 
-        <style>
-            :root {
-                --magenta: {{ $primaryColor }};
-                --selected-font-ar: "{{ $selectedArFont }}", "Courier Prime", "Courier New", monospace;
-                --selected-font-en: "{{ $selectedEnFont }}", "Courier Prime", "Courier New", monospace;
-                --font-sans: {{ app()->getLocale() === 'ar' ? 'var(--selected-font-ar)' : 'var(--selected-font-en)' }};
-                --font-serif: {{ app()->getLocale() === 'ar' ? 'var(--selected-font-ar)' : 'var(--selected-font-en)' }};
-                --font-mono: "Courier Prime", "Courier New", monospace;
-            }
-        </style>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="{!! $googleFontsUrl !!}" rel="stylesheet">
+
+        <script>
+            window.ncTranslations = {
+                added_to_bag: "{{ trans('nc::app.cart.added_to_bag') }}",
+                error_add_to_bag: "{{ trans('nc::app.cart.error_add_to_bag') }}",
+                select_options: "{{ trans('nc::app.products.select_options') }}"
+            };
+        </script>
 
         @bagistoVite(['src/Resources/assets/css/app.css', 'src/Resources/assets/js/app.js'])
 
         @stack('styles')
+
+        <style>
+            :root {
+                --magenta: {{ $primaryColor }};
+                --primary: {{ $primaryColor }};
+                --secondary: {{ $secondaryColor }};
+                --selected-font-ar: "{{ $selectedArFont }}", sans-serif;
+                --selected-font-en: "{{ $selectedEnFont }}", sans-serif;
+                --active-font: {{ app()->getLocale() === 'ar' ? 'var(--selected-font-ar)' : 'var(--selected-font-en)' }};
+                --font-sans: var(--active-font);
+                --font-serif: var(--active-font);
+                --font-mono: var(--active-font);
+            }
+
+            body,
+            input,
+            button,
+            select,
+            textarea,
+            .font-sans,
+            .font-serif,
+            .font-mono {
+                font-family: var(--active-font) !important;
+            }
+        </style>
+
+        @if ($customCss = core()->getConfigData('general.content.custom_scripts.custom_css'))
+            <style>
+                {!! $customCss !!}
+            </style>
+        @endif
 
         {!! view_render_event('bagisto.shop.layout.head.after') !!}
     </head>
@@ -74,30 +136,56 @@
     <body class="bg-[#fbf8f1] text-[#2e2224] antialiased selection:bg-[#bd1765] selection:text-white">
         {!! view_render_event('bagisto.shop.layout.body.before') !!}
 
-        <div class="nc-site-shell min-h-screen flex flex-col justify-between">
-            <div>
-                @if ($hasHeader)
-                    <x-nc::layouts.header />
-                @endif
+        <div id="app">
+            <x-shop::flash-group />
 
-                <main id="main">
-                    {{ $slot }}
-                </main>
+            <x-shop::modal.confirm />
+
+            <div class="nc-site-shell min-h-screen flex flex-col justify-between">
+                <div>
+                    @if ($hasHeader)
+                        <x-nc::layouts.header />
+                    @endif
+
+                    <main id="main">
+                        {{ $slot }}
+                    </main>
+                </div>
+
+                @if ($hasFooter)
+                    <x-nc::layouts.footer />
+                @endif
             </div>
 
-            @if ($hasFooter)
-                <x-nc::layouts.footer />
-            @endif
+            <x-nc::cart.drawer />
+
+            <x-nc::search.modal />
+
+            <div id="nc-toast-container"></div>
         </div>
-
-        <x-nc::cart.drawer />
-
-        <x-nc::search.modal />
-
-        <div id="nc-toast-container"></div>
 
         {!! view_render_event('bagisto.shop.layout.body.after') !!}
 
+        <x-shop::layouts.webmcp />
+
         @stack('scripts')
+
+        {!! view_render_event('bagisto.shop.layout.vue-app-mount.before') !!}
+        <script>
+            function mountApp() {
+                app.mount("#app");
+            }
+
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", mountApp);
+            } else {
+                mountApp();
+            }
+        </script>
+        {!! view_render_event('bagisto.shop.layout.vue-app-mount.after') !!}
+
+        <script type="text/javascript">
+            {!! core()->getConfigData('general.content.custom_scripts.custom_javascript') !!}
+        </script>
     </body>
 </html>

@@ -3,7 +3,7 @@
 namespace NumbersNebula\NebulaCosmetics\Sections;
 
 use Webkul\Theme\Sections\SectionType;
-use Webkul\Theme\SectionSchema;
+use NumbersNebula\NebulaCosmetics\Sections\SectionSchema;
 
 class ConcernsSection extends SectionType
 {
@@ -29,6 +29,16 @@ class ConcernsSection extends SectionType
     {
         return [
             [
+                'key' => 'bg_color',
+                'type' => SectionSchema::COLOR,
+                'label' => trans('nc::app.sections.common.bg_color'),
+            ],
+            [
+                'key' => 'text_color',
+                'type' => SectionSchema::COLOR,
+                'label' => trans('nc::app.sections.common.text_color'),
+            ],
+            [
                 'key' => 'kicker',
                 'type' => SectionSchema::TEXT,
                 'label' => trans('nc::app.sections.concerns.kicker'),
@@ -44,7 +54,7 @@ class ConcernsSection extends SectionType
                         'type' => SectionSchema::SELECT,
                         'label' => trans('nc::app.sections.concerns.select_category'),
                         'options' => array_merge(
-                            [['value' => '', 'label' => trans('nc::app.sections.concerns.custom_or_none')]],
+                            [['id' => '', 'value' => '', 'label' => trans('nc::app.sections.concerns.custom_or_none')]],
                             $this->categoryOptions()
                         ),
                     ],

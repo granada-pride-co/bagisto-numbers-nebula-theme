@@ -14,11 +14,13 @@
   --deep-magenta: #8f0e4b;
   --mint: #91e4d9;
   --lilac: #d9c7ff;
+  --primary: #bd1765;
+  --secondary: #91e4d9;
   --gold: #c29958;
   --gold-light: #d4af37;
   
-  --font-serif: "Courier Prime", "Courier New", monospace;
-  --font-sans: "Courier Prime", "Courier New", monospace;
+  --font-serif: "Cormorant Garamond", "Amiri", "El Messiri", Georgia, serif;
+  --font-sans: "DM Sans", "IBM Plex Sans Arabic", "Tajawal", system-ui, sans-serif;
   --font-mono: "Courier Prime", "Courier New", monospace;
 
   scroll-behavior: smooth;
@@ -49,6 +51,10 @@ body {
 }
 
 /* Typography Helpers */
+.font-sans {
+  font-family: var(--font-sans);
+}
+
 .font-serif {
   font-family: var(--font-serif);
 }
@@ -72,6 +78,11 @@ body {
 
 .nc-brand-lockup:hover {
   opacity: 0.85;
+}
+
+.nc-brand-lockup:has(img) {
+  border: none;
+  display: inline-flex;
 }
 
 .nc-brand-lockup > span {
@@ -98,24 +109,23 @@ body {
   color: var(--magenta);
 }
 
-/* Announcement Bar */
 .nc-announcement {
   height: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: var(--pink);
+  background: var(--primary, #bd1765);
   border-bottom: 1px solid var(--line-solid);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: var(--ink);
-  transition: background-color 0.25s ease;
+  color: #ffffff;
+  transition: opacity 0.25s ease;
 }
 
 .nc-announcement:hover {
-  background: var(--soft-pink);
+  opacity: 0.92;
 }
 
 /* Header */
@@ -148,7 +158,7 @@ body {
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: var(--ink);
+  color: inherit;
   transition: color 0.2s ease;
 }
 
@@ -379,14 +389,40 @@ body {
   border-color: var(--magenta);
 }
 
-.nc-btn--magenta {
-  background: var(--magenta);
+.nc-btn--magenta,
+.nc-btn--primary,
+#nc-add-to-cart-btn {
+  background: var(--primary, #bd1765);
   color: #ffffff;
-  border-color: var(--magenta);
+  border-color: var(--primary, #bd1765);
 }
 
-.nc-btn--magenta:hover {
-  background: var(--deep-magenta);
+.nc-btn--magenta:hover,
+.nc-btn--primary:hover,
+#nc-add-to-cart-btn:hover {
+  background: var(--deep-magenta, #8f0e4b);
+  border-color: var(--deep-magenta, #8f0e4b);
+}
+
+.nc-thumb-active {
+  border-color: var(--primary, #bd1765) !important;
+  box-shadow: 0 0 0 2px var(--primary, #bd1765) !important;
+}
+
+.nc-swatch-selected {
+  border-color: var(--primary, #bd1765) !important;
+  background-color: var(--primary, #bd1765) !important;
+  color: #ffffff !important;
+}
+
+.nc-swatch-color-selected {
+  border-color: var(--primary, #bd1765) !important;
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px var(--primary, #bd1765) !important;
+}
+
+.nc-badge--primary {
+  background-color: var(--primary, #bd1765) !important;
+  color: #ffffff !important;
 }
 
 /* Toast Notifications */
@@ -436,4 +472,93 @@ body {
 .scrollbar-none::-webkit-scrollbar {
   display: none;
 }
+
+/* Price styling - Always in system primary color */
+.final-price,
+.special-price,
+.product-price,
+.nc-product-card-price,
+.nc-product-view-price,
+.nc-price,
+[data-price] {
+  color: var(--magenta) !important;
+}
+
+.regular-price {
+  color: #a1a1aa !important;
+  text-decoration: line-through;
+}
+
+/* Product Card Price & Typography Enhancements */
+.nc-product-card-price {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.nc-product-card-price .final-price {
+  font-family: var(--font-mono);
+  font-size: 1.25rem !important;
+  font-weight: 800 !important;
+  color: var(--magenta) !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.01em;
+}
+
+.nc-product-card-price .regular-price {
+  font-family: var(--font-mono);
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  color: rgba(46, 34, 36, 0.45) !important;
+  text-decoration: line-through;
+  line-height: 1.2 !important;
+}
+
+.nc-product-card-price .price-label {
+  font-size: 0.75rem;
+  color: rgba(46, 34, 36, 0.6);
+  width: 100%;
+}
+
+/* ========================================================
+   Dynamic Section Theming & Scoping for Customizer Colors
+   ======================================================== */
+[style*="--section-color"] {
+  --line-solid: var(--section-color);
+  --line: color-mix(in srgb, var(--section-color) 18%, transparent);
+}
+
+[style*="--section-color"] h1,
+[style*="--section-color"] h2,
+[style*="--section-color"] h3,
+[style*="--section-color"] h4,
+[style*="--section-color"] h5,
+[style*="--section-color"] h6 {
+  color: var(--section-color);
+}
+
+[style*="--section-color"] .text-\[\#2e2224\],
+[style*="--section-color"] .text-ink {
+  color: var(--section-color) !important;
+}
+
+[style*="--section-color"] .border-\[\#2e2224\],
+[style*="--section-color"] .border-ink {
+  border-color: var(--section-color) !important;
+}
+
+[style*="--section-color"] [class*="text-[#2e2224]"] {
+  color: var(--section-color) !important;
+}
+
+[style*="--section-color"] [class*="border-[#2e2224]"] {
+  border-color: color-mix(in srgb, var(--section-color) 25%, transparent) !important;
+}
+
+[style*="--section-color"] .bg-\[\#2e2224\] {
+  background-color: var(--section-color) !important;
+  color: var(--section-bg, #ffffff) !important;
+}
+
 

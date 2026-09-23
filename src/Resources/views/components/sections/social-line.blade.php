@@ -2,7 +2,7 @@
 
 @php
     $isAr = app()->getLocale() === 'ar';
-    $text = data_get($options, 'text') ?: ($isAr ? 'شاهدي تركيباتنا على أرض الواقع' : 'SEE THE LAB IN REAL LIFE');
+    $text = data_get($options, 'text') ?: trans('nc::app.sections.social_line.default_text');
     $handle = data_get($options, 'handle') ?: '@NEBULA.COSMETICS';
     $link = data_get($options, 'link') ?: 'https://instagram.com';
     $configuredItems = (array) data_get($options, 'items', []);
@@ -17,12 +17,14 @@
     ];
 
     $items = ! empty($configuredItems) ? $configuredItems : $defaultPhotos;
+    $bgColor = data_get($options, 'bg_color') ?: '#fbf8f1';
+    $textColor = data_get($options, 'text_color') ?: '#2e2224';
 @endphp
 
-<section class="border-b border-[#2e2224] bg-[#fbf8f1] overflow-hidden">
+<section class="border-b border-[var(--section-color,#2e2224)] overflow-hidden" dir="{{ $isAr ? 'rtl' : 'ltr' }}" style="--section-bg: {{ $bgColor }}; --section-color: {{ $textColor }}; background-color: var(--section-bg); color: var(--section-color); border-color: var(--section-color);">
     {{-- Header Banner --}}
-    <div class="py-5 px-6 border-b border-[#2e2224]/20">
-        <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 font-mono text-xs font-bold tracking-widest text-[#2e2224] uppercase text-center">
+    <div class="py-5 px-6 border-b border-[var(--section-color,#2e2224)]/20" style="background-color: var(--section-bg); color: var(--section-color);">
+        <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 font-mono text-xs font-bold tracking-widest uppercase text-center" style="color: var(--section-color);">
             <span class="opacity-80">{{ $text }}</span>
             <a
                 href="{{ $link }}"
@@ -61,11 +63,11 @@
                 target="_blank"
                 rel="noopener noreferrer"
                 class="group relative block aspect-square bg-[#ebd8c8] overflow-hidden focus:outline-none"
-                aria-label="Instagram post"
+                aria-label="{{ trans('nc::app.sections.social_line.aria_post') }}"
             >
                 <img
                     src="{{ $imgSrc }}"
-                    alt="Instagram photo"
+                    alt="{{ trans('nc::app.sections.social_line.alt_photo') }}"
                     loading="lazy"
                     class="w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-110"
                 >

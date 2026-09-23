@@ -12,7 +12,7 @@
                 $messages[] = [
                     'text'     => $msgText,
                     'link'     => $item['link'] ?? '#newsletter',
-                    'btn_text' => $item['btn_text'] ?? 'SIGN UP',
+                    'btn_text' => $item['btn_text'] ?? trans('nc::app.header.sign_up'),
                 ];
             }
         }
@@ -21,7 +21,7 @@
     if (empty($messages)) {
         $singleText = data_get($options, 'text') ?: trans('nc::app.brand.tagline');
         $singleLink = data_get($options, 'link') ?: '#newsletter';
-        $singleBtn = data_get($options, 'btn_text') ?: 'SIGN UP';
+        $singleBtn = data_get($options, 'btn_text') ?: trans('nc::app.header.sign_up');
 
         $messages = [
             [
@@ -30,24 +30,25 @@
                 'btn_text' => $singleBtn,
             ],
             [
-                'text'     => app()->getLocale() === 'ar' ? 'توصيل مجاني لجميع الطلبات التي تتجاوز 250 ر.س' : 'Free delivery on all orders over $75',
+                'text'     => trans('nc::app.sections.announcement.default_msg_1'),
                 'link'     => route('shop.search.index'),
-                'btn_text' => app()->getLocale() === 'ar' ? 'تسوقي الآن' : 'SHOP NOW',
+                'btn_text' => trans('nc::app.sections.announcement.default_btn_1'),
             ],
             [
-                'text'     => app()->getLocale() === 'ar' ? 'تركيبات نباتية 100% ونقية ومثبتة سريرياً' : '100% Clean, Vegan & Clinically Proven Formulas',
+                'text'     => trans('nc::app.sections.announcement.default_msg_2'),
                 'link'     => '#routine',
-                'btn_text' => app()->getLocale() === 'ar' ? 'اكتشفي الروتين' : 'EXPLORE',
+                'btn_text' => trans('nc::app.sections.announcement.default_btn_2'),
             ],
         ];
     }
 
-    $bgColor = data_get($options, 'bg_color') ?: '#f089a8';
-    $textColor = data_get($options, 'text_color') ?: '#2e2224';
+    $bgColor = data_get($options, 'bg_color') ?: 'var(--primary, #bd1765)';
+    $textColor = data_get($options, 'text_color') ?: '#ffffff';
 @endphp
 
 <div
     class="nc-announcement relative overflow-hidden flex items-center justify-center px-4 md:px-6"
+    dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}"
     style="background-color: {{ $bgColor }}; color: {{ $textColor }};"
     data-nc-announcement-ticker
     data-speed="{{ $speed }}"

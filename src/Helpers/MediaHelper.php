@@ -3,6 +3,7 @@
 namespace NumbersNebula\NebulaCosmetics\Helpers;
 
 use Illuminate\Support\Facades\Storage;
+use Webkul\Category\Repositories\CategoryRepository;
 
 class MediaHelper
 {
@@ -32,5 +33,49 @@ class MediaHelper
         }
 
         return Storage::url($path);
+    }
+
+    /**
+     * Resolve the image URL for a category with ancestor and product fallback.
+     */
+    public static function categoryImage(mixed $category, string $fallback = ''): string
+    {
+        if (is_numeric($category)) {
+            $category = app(CategoryRepository::class)->find($category);
+        }
+
+        if (! $category) {
+            return $fallback;
+        }
+
+        if (! empty($category->logo_url)) {
+            return $category->logo_url;
+        }
+
+        if (! empty($category->banner_url)) {
+            return $category->banner_url;
+        }
+
+        $parent = $category->parent;
+
+        while ($parent) {
+            if (! empty($parent->logo_url)) {
+                return $parent->logo_url;
+            }
+
+            if (! empty($parent->banner_url)) {
+                return $parent->banner_url;
+            }
+
+            $parent = $parent->parent;
+        }
+
+        $product = $category->products()->first();
+
+        if (! empty($product?->base_image_url)) {
+            return $product->base_image_url;
+        }
+
+        return $fallback;
     }
 }

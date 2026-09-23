@@ -3,20 +3,38 @@
 namespace NumbersNebula\NebulaCosmetics\Providers;
 
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
+use NumbersNebula\NebulaCosmetics\Database\Seeders\NebulaCosmeticsSectionsSeeder;
 
 class NebulaCosmeticsServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
      */
-    public function register(): void {}
+    public function register(): void
+    {
+        $this->mergeConfigFrom(
+            __DIR__.'/../Config/system.php',
+            'core'
+        );
+
+        $this->app->singleton(
+            \Webkul\Theme\SectionSchema::class,
+            \NumbersNebula\NebulaCosmetics\Sections\SectionSchema::class
+        );
+    }
 
     /**
      * Bootstrap any application services.
      */
     public function boot(): void
     {
+        $this->app->concord->registerModel(
+            \Webkul\Theme\Contracts\Section::class,
+            \NumbersNebula\NebulaCosmetics\Models\Section::class
+        );
+
         $this->loadViewsFrom(__DIR__.'/../Resources/views', 'nc');
 
         $this->app['view']->prependNamespace('shop', __DIR__.'/../Resources/views');
@@ -36,5 +54,11 @@ class NebulaCosmeticsServiceProvider extends ServiceProvider
         ], 'nebula-cosmetics-images');
 
         $this->loadRoutesFrom(__DIR__.'/../Routes/admin-routes.php');
+
+        Event::listen('appearance.theme.activate.after', function ($channel) {
+            if ($channel->theme === 'nebula-cosmetics') {
+                app(NebulaCosmeticsSectionsSeeder::class)->seedForChannel($channel);
+            }
+        });
     }
 }

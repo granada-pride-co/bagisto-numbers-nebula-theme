@@ -19,19 +19,31 @@ class NebulaCosmeticsSectionsSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run($channel = null): void
     {
-        $channel = $this->channelRepository->first();
+        $channel = $channel ?: $this->channelRepository->first();
 
         if (! $channel) {
             return;
         }
 
-        $locales = ['ar', 'en'];
+        $this->seedForChannel($channel);
+    }
+
+    /**
+     * Seed sections for a given channel.
+     */
+    public function seedForChannel($channel): void
+    {
+        if (! $channel) {
+            return;
+        }
+
+        $locales = ['ar', 'en', 'fr'];
 
         $sections = [
             [
-                'name' => 'شريط الإعلانات الترويجي',
+                'name' => 'nc::app.sections.announcement.title',
                 'type' => 'nc_announcement',
                 'sort_order' => 1,
                 'status' => 1,
@@ -51,10 +63,56 @@ class NebulaCosmeticsSectionsSeeder extends Seeder
                 ],
             ],
             [
-                'name' => 'الواجهة الرئيسية (بنر مزدوج)',
-                'type' => 'nc_hero',
+                'name' => 'nc::app.sections.interactive_hero.title',
+                'type' => 'nc_interactive_hero',
                 'sort_order' => 2,
                 'status' => 1,
+                'channel_id' => $channel->id,
+                'theme_code' => 'nebula-cosmetics',
+                'options' => [
+                    'ar' => [
+                        'bg_color' => '#fbf8f1',
+                        'accent_color' => '#bd1765',
+                        'disc_color' => '#f089a8',
+                        'eyebrow' => 'سديم كوزمتكس — استوديو العناية الفائقة',
+                        'title_line_1' => 'تصاميم وتركيبات',
+                        'title_line_2' => 'تنظر في أعماق',
+                        'title_accent' => 'عينيك.',
+                        'subtitle' => 'نبتكر حلولاً متقدمة للعناية بالبشرة وقصصاً حقيقية ذات بصمة متفردة — تسع سنوات من الأبحاث الدقيقة، ونظرة ثاقبة لما تستحقه بشرتك.',
+                        'btn_primary_text' => 'ابدئي استشارتك الخاصة',
+                        'btn_primary_link' => '#consultation',
+                        'btn_ghost_text' => 'care@nebula-cosmetics.com',
+                        'btn_ghost_link' => 'mailto:care@nebula-cosmetics.com?subject=Skincare%20Consultation',
+                        'hint_text' => 'همسة — إنها تتبع حركة مؤشرك',
+                        'hint_sub' => 'انقري في أي مكان لتغمز لكِ',
+                        'modal_title' => "أخبرينا عن روتينك\nواحتياجات بشرتك.",
+                        'modal_subtitle' => 'بضعة تفاصيل كافية — خبيراتنا يقرأن كل كلمة بعناية فائقة لتقديم التركيبة الأمثل لكِ.',
+                    ],
+                    'en' => [
+                        'bg_color' => '#fbf8f1',
+                        'accent_color' => '#bd1765',
+                        'disc_color' => '#f089a8',
+                        'eyebrow' => 'Nebula — Modern High-Performance Skincare',
+                        'title_line_1' => 'Formulas that',
+                        'title_line_2' => 'look you in',
+                        'title_accent' => 'the eye.',
+                        'subtitle' => "We craft high-performance skincare formulas and stories with a point of view — rooted in clinical precision, and she's already sizing up yours.",
+                        'btn_primary_text' => 'Start a consultation',
+                        'btn_primary_link' => '#consultation',
+                        'btn_ghost_text' => 'care@nebula-cosmetics.com',
+                        'btn_ghost_link' => 'mailto:care@nebula-cosmetics.com?subject=Skincare%20Consultation',
+                        'hint_text' => 'psst — she follows your cursor',
+                        'hint_sub' => 'click anywhere — she winks',
+                        'modal_title' => "Tell her about\nyour skin goals.",
+                        'modal_subtitle' => "A line or two is plenty — she reads everything, she just doesn't always blink while doing it.",
+                    ],
+                ],
+            ],
+            [
+                'name' => 'nc::app.sections.hero.title',
+                'type' => 'nc_hero',
+                'sort_order' => 3,
+                'status' => 0,
                 'channel_id' => $channel->id,
                 'theme_code' => 'nebula-cosmetics',
                 'options' => [
@@ -77,7 +135,7 @@ class NebulaCosmeticsSectionsSeeder extends Seeder
                 ],
             ],
             [
-                'name' => 'بيان النص والاقتباس',
+                'name' => 'nc::app.sections.manifesto.title',
                 'type' => 'nc_manifesto',
                 'sort_order' => 3,
                 'status' => 1,
@@ -95,7 +153,7 @@ class NebulaCosmeticsSectionsSeeder extends Seeder
                 ],
             ],
             [
-                'name' => 'شبكة البطاقات والمميزات',
+                'name' => 'nc::app.sections.concerns.title',
                 'type' => 'nc_concerns',
                 'sort_order' => 4,
                 'status' => 1,
@@ -125,7 +183,7 @@ class NebulaCosmeticsSectionsSeeder extends Seeder
                 ],
             ],
             [
-                'name' => 'بنر تسويقي',
+                'name' => 'nc::app.sections.campaign.title',
                 'type' => 'nc_campaign',
                 'sort_order' => 5,
                 'status' => 1,
@@ -149,7 +207,7 @@ class NebulaCosmeticsSectionsSeeder extends Seeder
                 ],
             ],
             [
-                'name' => 'شبكة المنتجات',
+                'name' => 'nc::app.sections.featured_products.title',
                 'type' => 'nc_featured_products',
                 'sort_order' => 6,
                 'status' => 1,
@@ -171,7 +229,7 @@ class NebulaCosmeticsSectionsSeeder extends Seeder
                 ],
             ],
             [
-                'name' => 'خطوات العمل والمميزات',
+                'name' => 'nc::app.sections.routine.title',
                 'type' => 'nc_routine',
                 'sort_order' => 7,
                 'status' => 1,
@@ -205,7 +263,7 @@ class NebulaCosmeticsSectionsSeeder extends Seeder
                 ],
             ],
             [
-                'name' => 'المجموعات والتصنيفات',
+                'name' => 'nc::app.sections.collections.title',
                 'type' => 'nc_collections',
                 'sort_order' => 8,
                 'status' => 1,
@@ -215,27 +273,27 @@ class NebulaCosmeticsSectionsSeeder extends Seeder
                     'ar' => [
                         'kicker' => 'تسوقي حسب المجموعة',
                         'items' => [
-                            ['name' => 'المقشرات', 'format' => 'jar', 'tone' => '#ef88b4', 'link' => '#shop'],
-                            ['name' => 'المرطبات', 'format' => 'jar', 'tone' => '#a6e7d5', 'link' => '#shop'],
-                            ['name' => 'السيروم', 'format' => 'bottle', 'tone' => '#f7a7be', 'link' => '#shop'],
-                            ['name' => 'العين والشفاه', 'format' => 'tube', 'tone' => '#d9c7ff', 'link' => '#shop'],
-                            ['name' => 'الأقنعة', 'format' => 'pouch', 'tone' => '#f2c7a7', 'link' => '#shop'],
+                            ['name' => 'المقشرات', 'tone' => '#ef88b4', 'link' => '#shop'],
+                            ['name' => 'المرطبات', 'tone' => '#a6e7d5', 'link' => '#shop'],
+                            ['name' => 'السيروم', 'tone' => '#f7a7be', 'link' => '#shop'],
+                            ['name' => 'العين والشفاه', 'tone' => '#d9c7ff', 'link' => '#shop'],
+                            ['name' => 'الأقنعة', 'tone' => '#f2c7a7', 'link' => '#shop'],
                         ],
                     ],
                     'en' => [
                         'kicker' => 'SHOP BY COLLECTION',
                         'items' => [
-                            ['name' => 'Exfoliants', 'format' => 'jar', 'tone' => '#ef88b4', 'link' => '#shop'],
-                            ['name' => 'Moisturisers', 'format' => 'jar', 'tone' => '#a6e7d5', 'link' => '#shop'],
-                            ['name' => 'Serums', 'format' => 'bottle', 'tone' => '#f7a7be', 'link' => '#shop'],
-                            ['name' => 'Eye + Lip', 'format' => 'tube', 'tone' => '#d9c7ff', 'link' => '#shop'],
-                            ['name' => 'Masks', 'format' => 'pouch', 'tone' => '#f2c7a7', 'link' => '#shop'],
+                            ['name' => 'Exfoliants', 'tone' => '#ef88b4', 'link' => '#shop'],
+                            ['name' => 'Moisturisers', 'tone' => '#a6e7d5', 'link' => '#shop'],
+                            ['name' => 'Serums', 'tone' => '#f7a7be', 'link' => '#shop'],
+                            ['name' => 'Eye + Lip', 'tone' => '#d9c7ff', 'link' => '#shop'],
+                            ['name' => 'Masks', 'tone' => '#f2c7a7', 'link' => '#shop'],
                         ],
                     ],
                 ],
             ],
             [
-                'name' => 'بنر العرض والمكافآت',
+                'name' => 'nc::app.sections.rewards.title',
                 'type' => 'nc_rewards',
                 'sort_order' => 9,
                 'status' => 1,
@@ -259,7 +317,7 @@ class NebulaCosmeticsSectionsSeeder extends Seeder
                 ],
             ],
             [
-                'name' => 'شريط التواصل الاجتماعي',
+                'name' => 'nc::app.sections.social_line.title',
                 'type' => 'nc_social_line',
                 'sort_order' => 10,
                 'status' => 1,
@@ -295,7 +353,7 @@ class NebulaCosmeticsSectionsSeeder extends Seeder
                 ],
             ],
             [
-                'name' => 'شريط المزايا الأربعة',
+                'name' => 'nc::app.sections.service_strip.title',
                 'type' => 'nc_service_strip',
                 'sort_order' => 11,
                 'status' => 1,
@@ -321,7 +379,7 @@ class NebulaCosmeticsSectionsSeeder extends Seeder
                 ],
             ],
             [
-                'name' => 'صندوق النشرة البريدية',
+                'name' => 'nc::app.sections.newsletter.title',
                 'type' => 'nc_newsletter',
                 'sort_order' => 12,
                 'status' => 1,
@@ -344,6 +402,70 @@ class NebulaCosmeticsSectionsSeeder extends Seeder
                     ],
                 ],
             ],
+            [
+                'name' => 'nc::app.sections.footer.title',
+                'type' => 'nc_footer',
+                'sort_order' => 13,
+                'status' => 1,
+                'channel_id' => $channel->id,
+                'theme_code' => 'nebula-cosmetics',
+                'options' => [
+                    'ar' => [
+                        'brand_title' => 'سديم كوزمتكس',
+                        'brand_subtitle' => 'مختبرات العناية والجمال',
+                        'brand_description' => 'مستحضرات تجميل فاخرة وعناية متطورة بالبشرة مستوحاة من أسرار الطبيعة وأحدث ما توصلت إليه علوم الجمال.',
+                        'column_1_title' => 'المساعدة والدعم',
+                        'column_1_links' => [
+                            ['title' => 'الأسئلة الشائعة', 'url' => '#top'],
+                            ['title' => 'اتصلي بنا', 'url' => '#top'],
+                            ['title' => 'الشحن والتوصيل', 'url' => '#top'],
+                            ['title' => 'الاستبدال والاسترجاع', 'url' => '#top'],
+                        ],
+                        'column_2_title' => 'المزيد عن سديم',
+                        'column_2_links' => [
+                            ['title' => 'بناء الروتين', 'url' => '#routine'],
+                            ['title' => 'مكافآت سديم', 'url' => '#rewards'],
+                            ['title' => 'معاييرنا ومكوناتنا', 'url' => '#top'],
+                            ['title' => 'المجلة والمدونة', 'url' => '#top'],
+                        ],
+                        'column_3_title' => 'تسوقي حسب الفئة',
+                        'column_3_links' => [],
+                        'location' => 'القاهرة / دبي / الرياض',
+                        'social_links' => 'إنستغرام   تيك توك   بينترست',
+                        'copyright' => '© 2026 سديم كوزمتكس. جميع الحقوق محفوظة.',
+                        'show_developer_credit' => '1',
+                        'developer_credit_text' => 'صمم بواسطة سديم الأرقام للحلول الرقمية',
+                        'developer_credit_url' => 'https://numbers-nebula.com',
+                    ],
+                    'en' => [
+                        'brand_title' => 'NEBULA COSMETICS',
+                        'brand_subtitle' => 'LABORATOIRES',
+                        'brand_description' => 'Luxury cosmetic formulations and advanced skincare rituals crafted with nature\'s rarest botanicals and clinical efficacy.',
+                        'column_1_title' => 'HELP & SUPPORT',
+                        'column_1_links' => [
+                            ['title' => 'FAQ', 'url' => '#top'],
+                            ['title' => 'Contact Us', 'url' => '#top'],
+                            ['title' => 'Shipping & Delivery', 'url' => '#top'],
+                            ['title' => 'Returns & Exchanges', 'url' => '#top'],
+                        ],
+                        'column_2_title' => 'ABOUT NEBULA',
+                        'column_2_links' => [
+                            ['title' => 'Build Routine', 'url' => '#routine'],
+                            ['title' => 'Rewards Program', 'url' => '#rewards'],
+                            ['title' => 'Our Standards', 'url' => '#top'],
+                            ['title' => 'Journal', 'url' => '#top'],
+                        ],
+                        'column_3_title' => 'SHOP BY CATEGORY',
+                        'column_3_links' => [],
+                        'location' => 'Cairo / Dubai / Riyadh',
+                        'social_links' => 'Instagram   TikTok   Pinterest',
+                        'copyright' => '© 2026 Nebula Cosmetics. All Rights Reserved.',
+                        'show_developer_credit' => '1',
+                        'developer_credit_text' => 'Designed by Numbers Nebula',
+                        'developer_credit_url' => 'https://numbers-nebula.com',
+                    ],
+                ],
+            ],
         ];
 
         foreach ($sections as $sectionData) {
@@ -358,13 +480,22 @@ class NebulaCosmeticsSectionsSeeder extends Seeder
 
             $section = $existing ?: $this->sectionRepository->create($sectionData);
 
+            $section->status = $sectionData['status'] ?? 1;
+            $section->sort_order = $sectionData['sort_order'];
+            $section->draft_status = null;
+            $section->draft_sort_order = null;
+
             foreach ($locales as $locale) {
                 if (isset($translations[$locale])) {
-                    $section->translateOrNew($locale)->options = $translations[$locale];
+                    $translation = $section->translateOrNew($locale);
+                    $translation->options = $translations[$locale];
+                    $translation->draft_options = null;
                 }
             }
 
             $section->save();
         }
+
+        app(CleoSectionsSeeder::class)->run($channel);
     }
 }

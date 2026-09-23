@@ -14,9 +14,14 @@
             <button
                 type="button"
                 data-nc-search-close
-                class="font-mono text-xs font-bold tracking-wider hover:text-[#bd1765]"
+                class="h-9 px-4 flex items-center gap-2 border border-[#2e2224] bg-white text-[#2e2224] hover:bg-[#bd1765] hover:text-white hover:border-[#bd1765] font-mono text-xs font-bold uppercase transition-colors cursor-pointer"
+                aria-label="{{ trans('nc::app.header.close') }}"
             >
-                {{ trans('nc::app.header.close') }} [ESC]
+                <span>{{ trans('nc::app.header.close') }}</span>
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
             </button>
         </div>
 

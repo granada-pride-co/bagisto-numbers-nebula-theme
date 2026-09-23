@@ -1,10 +1,9 @@
 @php
     $channel = core()->getCurrentChannel();
-    $isAr = app()->getLocale() === 'ar';
-    $defaultTitle = $isAr ? 'سديم كوزمتكس | عناية عصرية بالبشرة' : 'Nebula Cosmetics | Modern High-Performance Skincare';
-    $defaultDesc = $isAr ? 'عناية عصرية بالبشرة. تركيبات عالية الأداء مدعومة بالعلوم ومصنوعة بأرقى المكونات.' : 'High-performance skincare formulas rooted in real science and natural botanicals.';
-    $defaultKeywords = $isAr ? 'كوزمتكس, عناية بالبشرة, سيروم, ترطيب, مقشر' : 'cosmetics, skincare, serum, moisturizer, glow';
-    $defaultSiteName = $channel->name ?: ($isAr ? 'سديم كوزمتكس' : 'Nebula Cosmetics');
+    $defaultTitle = trans('nc::app.home.meta_title');
+    $defaultDesc = trans('nc::app.home.meta_description');
+    $defaultKeywords = trans('nc::app.home.meta_keywords');
+    $defaultSiteName = $channel->name ?: (trans('nc::app.brand.name') . ' ' . trans('nc::app.brand.subtitle'));
 @endphp
 
 @push ('meta')
@@ -17,7 +16,7 @@
     @if (! empty($sections) && $sections->count())
         @foreach ($sections as $section)
             @php
-                $data = (array) $section->options;
+                $data = (array) ($section->translate(app()->getLocale())?->options ?? $section->options);
                 $marks = ($preview ?? false) && ! $section->getTypeInstance()?->rendersInLayout();
             @endphp
 
@@ -31,6 +30,10 @@
             @switch ($section->type)
                 @case ('nc_hero')
                     <x-nc::sections.hero :options="$data" />
+                    @break
+
+                @case ('nc_interactive_hero')
+                    <x-nc::sections.interactive-hero :options="$data" />
                     @break
 
                 @case ('nc_manifesto')
@@ -49,8 +52,52 @@
                     <x-nc::sections.featured-products :options="$data" />
                     @break
 
+                @case ('nc_category_tabs_products')
+                    <x-nc::sections.category-tabs-products :options="$data" />
+                    @break
+
                 @case ('nc_routine')
                     <x-nc::sections.routine :options="$data" />
+                    @break
+
+                @case ('nc_ancient_modern')
+                    <x-nc::sections.ancient-modern :options="$data" />
+                    @break
+
+                @case ('nc_cleo_ritual')
+                    <x-nc::sections.cleo-ritual :options="$data" />
+                    @break
+
+                @case ('nc_night_cycling')
+                    <x-nc::sections.night-cycling :options="$data" />
+                    @break
+
+                @case ('nc_climate_defense')
+                    <x-nc::sections.climate-defense :options="$data" />
+                    @break
+
+                @case ('nc_beauty_myths')
+                    <x-nc::sections.beauty-myths :options="$data" />
+                    @break
+
+                @case ('nc_founders_lab')
+                    <x-nc::sections.founders-lab :options="$data" />
+                    @break
+
+                @case ('nc_actives_index')
+                    <x-nc::sections.actives-index :options="$data" />
+                    @break
+
+                @case ('nc_results_timeline')
+                    <x-nc::sections.results-timeline :options="$data" />
+                    @break
+
+                @case ('nc_patch_test')
+                    <x-nc::sections.patch-test :options="$data" />
+                    @break
+
+                @case ('nc_ancient_heritage')
+                    <x-nc::sections.ancient-heritage :options="$data" />
                     @break
 
                 @case ('nc_collections')

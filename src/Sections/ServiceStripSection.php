@@ -3,7 +3,7 @@
 namespace NumbersNebula\NebulaCosmetics\Sections;
 
 use Webkul\Theme\Sections\SectionType;
-use Webkul\Theme\SectionSchema;
+use NumbersNebula\NebulaCosmetics\Sections\SectionSchema;
 
 class ServiceStripSection extends SectionType
 {
@@ -30,8 +30,13 @@ class ServiceStripSection extends SectionType
         return [
             [
                 'key' => 'bg_color',
-                'type' => SectionSchema::TEXT,
+                'type' => SectionSchema::COLOR,
                 'label' => trans('nc::app.sections.service_strip.bg_color'),
+            ],
+            [
+                'key' => 'text_color',
+                'type' => SectionSchema::COLOR,
+                'label' => trans('nc::app.sections.common.text_color'),
             ],
             [
                 'key' => 'items',

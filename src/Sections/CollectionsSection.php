@@ -3,7 +3,7 @@
 namespace NumbersNebula\NebulaCosmetics\Sections;
 
 use Webkul\Theme\Sections\SectionType;
-use Webkul\Theme\SectionSchema;
+use NumbersNebula\NebulaCosmetics\Sections\SectionSchema;
 
 class CollectionsSection extends SectionType
 {
@@ -29,6 +29,16 @@ class CollectionsSection extends SectionType
     {
         return [
             [
+                'key' => 'bg_color',
+                'type' => SectionSchema::COLOR,
+                'label' => trans('nc::app.sections.common.bg_color'),
+            ],
+            [
+                'key' => 'text_color',
+                'type' => SectionSchema::COLOR,
+                'label' => trans('nc::app.sections.common.text_color'),
+            ],
+            [
                 'key' => 'kicker',
                 'type' => SectionSchema::TEXT,
                 'label' => trans('nc::app.sections.collections.kicker'),
@@ -40,24 +50,33 @@ class CollectionsSection extends SectionType
                 'add_label' => trans('nc::app.sections.collections.add_collection'),
                 'fields' => [
                     [
-                        'key' => 'name',
-                        'type' => SectionSchema::TEXT,
-                        'label' => trans('nc::app.sections.collections.collection_name'),
+                        'key' => 'category_id',
+                        'type' => SectionSchema::SELECT,
+                        'label' => trans('nc::app.sections.collections.select_category'),
+                        'options' => array_merge(
+                            [['id' => '', 'value' => '', 'label' => trans('nc::app.sections.collections.custom_or_none')]],
+                            $this->categoryOptions()
+                        ),
                     ],
                     [
-                        'key' => 'format',
-                        'type' => SectionSchema::TEXT,
-                        'label' => trans('nc::app.sections.collections.format'),
+                        'key' => 'image',
+                        'type' => SectionSchema::IMAGE,
+                        'label' => trans('nc::app.sections.collections.image_override'),
                     ],
                     [
                         'key' => 'tone',
-                        'type' => SectionSchema::TEXT,
+                        'type' => SectionSchema::COLOR,
                         'label' => trans('nc::app.sections.collections.tone_color'),
+                    ],
+                    [
+                        'key' => 'name',
+                        'type' => SectionSchema::TEXT,
+                        'label' => trans('nc::app.sections.collections.collection_name_override'),
                     ],
                     [
                         'key' => 'link',
                         'type' => SectionSchema::TEXT,
-                        'label' => trans('nc::app.sections.collections.link'),
+                        'label' => trans('nc::app.sections.collections.link_override'),
                     ],
                 ],
             ],

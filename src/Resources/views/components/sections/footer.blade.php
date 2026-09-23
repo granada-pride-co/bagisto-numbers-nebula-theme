@@ -1,3 +1,3 @@
 @props(['options' => []])
 
-<x-nc::layouts.footer />
+<x-nc::layouts.footer :options="$options" />
